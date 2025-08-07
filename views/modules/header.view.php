@@ -4,11 +4,14 @@
         <header>
             <nav class="navbar navbar-expand-lg header-anim">
                 <div class="container">
-                    <a class="navbar-brand" href="index.php"><img src="assets/images/loggo.png" alt="50"></a>
+                    <div class="logo">
+                        <a class="navbar-brand" href="index.php"><img src="assets/images/loggo.png" alt="50"></a>
+                    </div>
+                    
                     
                     <form class="d-flex order-lg-last ms-3 align-items-center"> 
                         
-                        <a class="signup-btn btn btn-outline-primary text-nowrap" data-trigger="#signup" data-lenis-stop>
+                        <a  style="margin-top: '-50;"   class="btn-primary btn btn-outline-primary text-nowrap" data-trigger="#signup" data-lenis-stop>
                             <span class="d-none d-sm-inline-block"><span class="outer-wrap"><span data-text="INGRESAR">INGRESAR</span></span></span> 
                             <span class="d-block d-sm-none"><i class="bi bi-door-closed"></i></span>
                         </a>
@@ -45,7 +48,7 @@
                                 <li>
                                       <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false"> Herramientas Contables</a>
                                 </li>
-                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false"> Herramientas Contables</a>
+                                  
                                 
                             </ul>
                         </div>                        
@@ -109,5 +112,10 @@
 .navbar-nav > li {
     margin-right: 20px; /* Puedes ajustar este valor */
 }
-    </style>
+.logo {
+  height: 40px; /* Ajusta el tamaño del logo */
+  margin-top: -35px; /* Sube la imagen ajustando el margen superior */
+}
+
+    </style>    
     

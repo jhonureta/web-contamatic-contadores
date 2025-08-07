@@ -16,7 +16,7 @@
                                 <h1><strong style="color: #282e67;"> Una comunidad que evoluciona contigo</strong></h1>
                                 <p class="lead">Creamos soluciones digitales que simplifican tu trabajo y te ayudan a brindar un mejor servicio a tus clientes.</p>
                                 <div class="cta-group">
-                                   <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registroModal">
+                                   <a href="#" class="btn btn-registro" data-bs-toggle="modal" data-bs-target="#registroModal">
                                     <span class="outer-wrap"><span data-text="Regístrate Gratis">Regístrate Contador <i class="bi bi-arrow-right-circle-fill"></i></span>
                                     </a>
                                    <a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#registroModal2">

@@ -448,9 +448,9 @@ label.error {
 
 /*--- btn primary --*/
 .btn-primary {
-    color: #0056b3  !important;              /* Texto azul */
+    color: #2a1c5c  !important;              /* Texto azul */
     background-color: #fff !important;      /* Fondo blanco */
-    border: 1px solid #00429d !important;   /* Borde azul */
+    border: 1px solid #2a1c5c !important;   /* Borde azul */
     font-weight: 700 !important;             /* Texto en negrita */
     font-size: 14px !important;              /* Tamaño de texto */
     padding: 10px 15px !important;           /* Espaciado */
@@ -460,24 +460,53 @@ label.error {
     text-align: center !important;
     box-shadow: none !important;              /* Sin sombra */
     white-space: normal !important;           /* Permite que el texto haga salto de línea */
+    
 }
 
 .btn-primary:hover,
 .btn-primary:focus,
 .btn-primary:active {
-    color: #0056b3  !important;                /* Azul más oscuro al hover */
-    border-color: #002c6c !important;
+    color: #2a1c5c !important;                /* Azul más oscuro al hover */
+    border-color: #2a1c5c !important;
     background-color: #e6f0ff !important;     /* Fondo azul claro al hover */
+    box-shadow: none !important;
+}
+
+.btn-registro {
+    color: #2a1c5c !important;             /* Texto azul */
+    background-color: #fff !important;     /* Fondo blanco */
+    border: 1px solid #2a1c5c !important;  /* Borde azul */
+    font-weight: 700 !important;            /* Texto en negrita */
+    font-size: 14px !important;             /* Tamaño de texto */
+    padding: 10px 15px !important;          /* Espaciado */
+    text-transform: uppercase !important;   /* Texto en mayúsculas */
+    line-height: 36px !important;           /* Ajuste de la altura de línea para centrar el texto */
+    border-radius: 4px !important;          /* Bordes redondeados */
+    text-align: center !important;         
+    box-shadow: none !important;            /* Sin sombra */
+    white-space: normal !important;         /* Permite que el texto haga salto de línea */
+    word-wrap: break-word !important;       /* Asegura que el texto no se desborde */
+    width: auto !important;                 /* Ajuste automático de ancho */
+    height: auto !important;                /* Ajuste automático de altura */
+}
+
+.btn-registro:hover,
+.btn-registro:focus,
+.btn-registro:active {
+    color: #2a1c5c !important;               /* Azul más oscuro al hover */
+    border-color: #2a1c5c !important;      
+    background-color: #e6f0ff !important;   /* Fondo azul claro al hover */
     box-shadow: none !important;
 }
 
 
 
+
 /*--- btn secondary --*/
 .btn.btn-secondary {
-    color: #0056b3 !important; /* Azul para el texto */
+    color: #2a1c5c!important; /* Azul para el texto */
     background-color: #fff !important; /* Fondo blanco */
-    border: 1px solid #0056b3 !important; /* Borde azul */
+    border: 1px solid #2a1c5c !important; /* Borde azul */
     font-weight: 500; /* Opcional, para un texto semi-negrita */
     font-size: 14px; /* Ajusta el tamaño de texto si es necesario */
     padding: 6px 12px; /* Ajusta el padding para que sea más similar */
@@ -487,7 +516,7 @@ label.error {
 .btn.btn-secondary:hover,
 .btn.btn-secondary:focus,
 .btn.btn-secondary:active {
-    color: #003d80 !important; /* Azul más oscuro al hover */
+    color: #2a1c5c !important; /* Azul más oscuro al hover */
     background-color: #e6f0ff !important; /* Fondo muy suave azul al hover */
     border-color: #003d80 !important;
 }
