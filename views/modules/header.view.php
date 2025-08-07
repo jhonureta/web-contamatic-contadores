@@ -1,17 +1,15 @@
     <!-- Page Header Start -->    
-    <div class="home-default">
+    <div class="home-default" style="height: auto;">
         
         <header>
             <nav class="navbar navbar-expand-lg header-anim">
                 <div class="container">
-                    <a class="navbar-brand" href="index.html"><img src="assets/images/logo_purple.svg" alt=""></a>
+                    <a class="navbar-brand" href="index.php"><img src="assets/images/loggo.png" alt="50"></a>
                     
-                    <form class="d-flex order-lg-last ms-3 align-items-center">
-                        <a href="#" id="search_home">
-                            <i class="srn-search"></i>
-                        </a>
+                    <form class="d-flex order-lg-last ms-3 align-items-center"> 
+                        
                         <a class="signup-btn btn btn-outline-primary text-nowrap" data-trigger="#signup" data-lenis-stop>
-                            <span class="d-none d-sm-inline-block"><span class="outer-wrap"><span data-text="Sing Up">Sing Up</span></span></span> 
+                            <span class="d-none d-sm-inline-block"><span class="outer-wrap"><span data-text="INGRESAR">INGRESAR</span></span></span> 
                             <span class="d-block d-sm-none"><i class="bi bi-door-closed"></i></span>
                         </a>
                         <button class="navbar-toggler x collapsed" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarCollapse"
@@ -34,71 +32,21 @@
                         <div class="offcanvas-body" data-lenis-prevent>
                             
                             <ul class="navbar-nav">
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Home</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="index.html">Home Default</a></li>
-                                        <li><a class="dropdown-item" href="index-digital-marketing.html">Home Digital Marketing</a></li>
-                                        <li><a class="dropdown-item" href="index-software.html">Home Software</a></li>
-                                        <li><a class="dropdown-item" href="index-coworking.html">Home Coworking</a></li>
-                                    </ul>
+                                <li>
+                                    <a class="nav-link" href="#" >Planes Contables</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">About</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="about-us.html">About Us</a></li>
-                                        <li><a class="dropdown-item" href="our-team.html">Our Team</a></li>
-                                        <li><a class="dropdown-item" href="team-single.html">Team Single</a></li>
-                                    </ul>
+                                <li></li>
+                                <li> 
+                                    <a class="nav-link " href="#"  aria-expanded="false">  Planes Facturero Electronico</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Services</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="our-services.html">Our Services</a></li>
-                                        <li><a class="dropdown-item" href="service-single.html">Services Single</a></li>
-                                    </ul>
+                                   <li>
+                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false">Firmas</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Pages</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="contact.html">Contact Us</a></li>
-                                        <li><a class="dropdown-item" href="faqs.html">Faqs</a></li>
-                                        <li><a class="dropdown-item" href="our-pricing.html">Our Pricing</a></li>
-                                        <li><a class="dropdown-item" href="coming-soon.html">Coming soon</a></li>
-                                        <li><a class="dropdown-item" href="404-page.html">404 Page</a></li>
-                                    </ul>
+                                <li>
+                                      <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false"> Herramientas Contables</a>
                                 </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Portfolio</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="portfolio-2col.html">Portfolio 2 Column</a></li>
-                                        <li><a class="dropdown-item" href="portfolio-3col.html">Portfolio 3 Column</a></li>
-                                        <li><a class="dropdown-item" href="portfolio-4col.html">Portfolio 4 Column</a></li>
-                                        <li><a class="dropdown-item" href="portfolio-single.html">Portfolio Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Blog</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="blog-grid.html">Blog Grid</a></li>
-                                        <li><a class="dropdown-item" href="blog-standard.html">Blog Standard</a></li>
-                                        <li><a class="dropdown-item" href="blog-single.html">Blog Single</a></li>
-                                    </ul>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Elements</a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="typography.html#heading">Headings Styles</a></li>
-                                        <li><a class="dropdown-item" href="typography.html#icons">Icons Styles</a></li>
-                                        <li><a class="dropdown-item" href="typography.html#button-style">Button Styles</a></li>
-                                        <li><a class="dropdown-item" href="typography.html#blockquotes-styles">Blockquotes Styles</a></li>
-                                        <li><a class="dropdown-item" href="typography.html#bullet-styles">Bullet Styles</a></li>
-                                        <li><a class="dropdown-item" href="typography.html#tabs-styles">Tabs Styles</a></li>
-                                        <li><a class="dropdown-item" href="typography.html#accordian-styles">Accordian Styles</a></li>
-                                        <li><a class="dropdown-item" href="typography.html#forms-styles">Forms Styles</a></li>
-                                        <li><a class="dropdown-item" href="typography.html#pagination-styles">Pagination Styles</a></li>
-                                    </ul>
-                                </li>
+                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false"> Herramientas Contables</a>
+                                
                             </ul>
                         </div>                        
                     </div>
@@ -156,4 +104,10 @@
         <!--  Signup Form Start -->
     </div>
     <!-- Page Header End -->
+
+    <style>
+.navbar-nav > li {
+    margin-right: 20px; /* Puedes ajustar este valor */
+}
+    </style>
     

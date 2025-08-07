@@ -73,9 +73,9 @@ Template Name:  Serenite - Saas Software Landing & Startup Agency Template
 
 :root {
     scroll-behavior: inherit;
-    --primary: #5763de;
+    --primary: #282e67;
     --primary-rgb: 87, 99, 282;
-    --secondary: #fc7952;    
+    --secondary: #FFEB3B;    
     --secondary-rgb: 252, 121, 82;
     --white: #ffffff;
     --light: #f2f2f2;
@@ -84,13 +84,13 @@ Template Name:  Serenite - Saas Software Landing & Startup Agency Template
     --default: #282e67;
     --default-text: #1b1642;
     --yellow: #ffb000;
-    --violet: #7d8cff;
+    --violet: #282e67;
     --yellow-light: #fff7e5;
     --light-gray: #9cb2d3;
     --label-color: #62627a;
     --error: #fe2724;
     --gdr-dark: linear-gradient( 90deg, rgb(63, 75, 75) 0%, rgb(47, 59, 59) 100% );
-    --gdr-primary: linear-gradient( 90deg, rgb(229,235,251) 0%, rgb(125,139,254) 100%);
+    --gdr-primary: linear-gradient( 90deg, rgb(229,235,251) 0%, rgb(5, 22, 153) 100%);
     --gdr-secondary: linear-gradient( 90deg, rgba(255,147,76,0.99608) 0%, rgb(252,86,38) 100%);
     --gradient-light: linear-gradient(0deg, rgb(244,248,251) 0%, rgb(255,255,255) 100%);
 }
@@ -288,6 +288,7 @@ h6 {
  .offcanvas-body{
     width: 100%;
     padding-top: 0;
+    margin-bottom: 10px;
  }
 .mobile-offcanvas.show{
     visibility: visible;
@@ -446,63 +447,51 @@ label.error {
 }
 
 /*--- btn primary --*/
-.btn-primary,
-.btn-primary.disabled,
-.btn-primary:disabled,
-.btn-primary:hover:disabled {
-    color: #fff;
-    background-color: var(--primary);
-    border-color: var(--primary);
+.btn-primary {
+    color: #0056b3  !important;              /* Texto azul */
+    background-color: #fff !important;      /* Fondo blanco */
+    border: 1px solid #00429d !important;   /* Borde azul */
+    font-weight: 700 !important;             /* Texto en negrita */
+    font-size: 14px !important;              /* Tamaño de texto */
+    padding: 10px 15px !important;           /* Espaciado */
+    text-transform: uppercase !important;    /* Texto en mayúsculas */
+    line-height: 1.2 !important;              /* Ajuste de altura de línea para el texto */
+    border-radius: 4px !important;            /* Bordes redondeados */
+    text-align: center !important;
+    box-shadow: none !important;              /* Sin sombra */
+    white-space: normal !important;           /* Permite que el texto haga salto de línea */
 }
-.btn-primary:hover {
-    color: #fff;
-    background-color: #3240cc;
-    border-color: #3240cc;
-}
-.btn-primary.focus,
-.btn-primary:focus {
-    color: #fff;
-    background-color: #3240cc;
-    border-color: #3240cc;
-    box-shadow: 0 0 0 1px rgb(45, 132, 131);
-}
-.btn-primary:not(:disabled):not(.disabled).active,
-.btn-primary:not(:disabled):not(.disabled):active,
-.show > .btn-primary.dropdown-toggle {
-    color: #fff;
-    background-color: #3240cc;
-    border-color: #3240cc;
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    color: #0056b3  !important;                /* Azul más oscuro al hover */
+    border-color: #002c6c !important;
+    background-color: #e6f0ff !important;     /* Fondo azul claro al hover */
     box-shadow: none !important;
 }
 
+
+
 /*--- btn secondary --*/
-.btn-secondary,
-.btn-secondary.disabled,
-.btn-secondary:disabled,
-.btn-secondary:hover:disabled {
-    color: #fff;
-    background-color: var(--secondary);
-    border-color: var(--secondary);
+.btn.btn-secondary {
+    color: #0056b3 !important; /* Azul para el texto */
+    background-color: #fff !important; /* Fondo blanco */
+    border: 1px solid #0056b3 !important; /* Borde azul */
+    font-weight: 500; /* Opcional, para un texto semi-negrita */
+    font-size: 14px; /* Ajusta el tamaño de texto si es necesario */
+    padding: 6px 12px; /* Ajusta el padding para que sea más similar */
+    border-radius: 4px; /* Ajusta el radio de borde si quieres */
 }
-.btn-secondary:hover {
-    color: #fff;
-    background-color: #ff6436;
-    border-color: #ff6436;
+
+.btn.btn-secondary:hover,
+.btn.btn-secondary:focus,
+.btn.btn-secondary:active {
+    color: #003d80 !important; /* Azul más oscuro al hover */
+    background-color: #e6f0ff !important; /* Fondo muy suave azul al hover */
+    border-color: #003d80 !important;
 }
-.btn-secondary.focus,
-.btn-secondary:focus {
-    color: #fff;
-    background-color: #ff6436;
-    border-color: #ff6436;
-    box-shadow: 0 0 0 1px rgb(45, 163, 47);
-}
-.btn-secondary:not(:disabled):not(.disabled).active,
-.btn-secondary:not(:disabled):not(.disabled):active,
-.show > .btn-secondary.dropdown-toggle {
-    color: #fff;
-    background-color: #ff6436;
-    border-color: #ff6436;
-}
+
 
 /*--- btn success --*/
 .btn-success {
@@ -7040,6 +7029,7 @@ html.lenis body {
 	.navbar-expand-lg .navbar-nav .nav-link {
 		padding: 0.7rem 0.6rem;
         font-size: 1rem;
+        
 	}
      
     .navbar .dropdown-menu li > a{

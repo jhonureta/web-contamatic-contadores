@@ -7,38 +7,74 @@
                 <div class="owl-carousel owl-theme top-right-arrow" id="client-home-default">
                     <div class="item">
                         <div class="img-partner">
-                            <img src="assets/images/partner/img-client1.png" alt="">
+                            <img src="assets/images/firmas.png" alt="Firmas" class="firmas">
                         </div>
                     </div>
                     <div class="item">
                         <div class="img-partner">
-                            <img src="assets/images/partner/img-client2.png" alt="">
+                            <img src="assets/images/sistema_contable.png" alt="Sistema Contable" class="firmas">
                         </div>
                     </div>
                     <div class="item">
                         <div class="img-partner">
-                            <img src="assets/images/partner/img-client3.png" alt="">
+                            <img src="assets/images/factureros_electronicos.png" alt="factures " class="firmas">
                         </div>
                     </div>
                     <div class="item">
                         <div class="img-partner">
-                            <img src="assets/images/partner/img-client4.png" alt="">
+                            <img src="assets/images/herramientas_contables.png" alt="herramientas" class="firmas">
                         </div>
                     </div>
                     <div class="item">
                         <div class="img-partner">
-                            <img src="assets/images/partner/img-client5.png" alt="">
+                            <img src="assets/images/supercias.png" alt="supercias " class="firmas">
                         </div>
                     </div>
                     <div class="item">
                         <div class="img-partner">
-                            <img src="assets/images/partner/img-client6.png" alt="">
+                            <img src="assets/images/flujo_efectivo.png" alt="flujo efectivo" class="firmas">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <!-- Logo Carousel -->
+         <style>
+        .partners-container {
+                display: flex;
+                justify-content: space-around; /* o space-between */
+                align-items: center;
+                padding: 20px;
+                background-color: #fff;
+                border-radius: 10px;
+            }
+
+            .img-partner img {
+                height: 100px;  /* Tamaño uniforme */
+                object-fit: contain; /* Ajusta la imagen sin deformarla */
+                max-width: 150px; /* Limita el ancho */
+                transition: transform 0.3s ease;
+            }
+
+            /* Solo para la imagen Firmas, agrandarla */
+           .img-partner.recortada {
+                width: 120px;       /* Tamaño del recorte */
+                height: 100px;      /* Igual que la altura de las imágenes */
+                overflow: hidden;   /* Oculta lo que quede fuera */
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                }
+
+                .img-partner.recortada img.firmas {
+                height: 120px;      /* Más grande para zoom */
+                object-fit: cover;  /* Recorta para llenar el contenedor */
+                object-position: center; /* Centra la imagen */
+                transform: none;    /* Quitar zoom porque ya aumentamos tamaño */
+                }
+         </style>
+  
+
 
         <!-- Why Chose Us? -->
         <section class="section-spacing home-ideas-wrap">            
