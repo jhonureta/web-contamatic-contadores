@@ -10,11 +10,6 @@
                     
                     
                     <form class="d-flex order-lg-last ms-3 align-items-center"> 
-                        
-                        <a  style="margin-top: '-50;"   class="btn-primary btn btn-outline-primary text-nowrap" data-trigger="#signup" data-lenis-stop>
-                            <span class="d-none d-sm-inline-block"><span class="outer-wrap"><span data-text="INGRESAR">INGRESAR</span></span></span> 
-                            <span class="d-block d-sm-none"><i class="bi bi-door-closed"></i></span>
-                        </a>
                         <button class="navbar-toggler x collapsed" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarCollapse"
                         aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="icon-bar"></span>
@@ -34,19 +29,23 @@
                         </div>
                         <div class="offcanvas-body" data-lenis-prevent>
                             
-                            <ul class="navbar-nav">
-                                <li>
-                                    <a class="nav-link" href="#" >Planes Contables</a>
+                            <ul class="navbar-nav" >
+                                <li >
+                                    <a class="nav-link " href="#" >Planes Plataformas contables</a>
                                 </li>
                                 <li></li>
                                 <li> 
-                                    <a class="nav-link " href="#"  aria-expanded="false">  Planes Facturero Electronico</a>
+                                    <a class="nav-link " href="#"  aria-expanded="false">Distribuir Firmas</a>
                                 </li>
                                    <li>
-                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false">Firmas</a>
+                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false">Herramientas contables</a>
                                 </li>
-                                <li>
-                                      <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false"> Herramientas Contables</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Ingresar</a>
+                                     <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="https://empresarial.contamatic.ec/sistema/">Sistema Contable</a></li>
+                                        <li><a class="dropdown-item" href="https://facturacion-electronica.contamatic.ec/factumatic/">Facturero Electrónico </a></li>
+                                    </ul>
                                 </li>
                                   
                                 
@@ -109,7 +108,7 @@
     <!-- Page Header End -->
 
     <style>
-.navbar-nav > li {
+    .navbar-nav > li {
     margin-right: 20px; /* Puedes ajustar este valor */
 }
 .logo {

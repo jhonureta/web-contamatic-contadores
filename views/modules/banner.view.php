@@ -22,7 +22,7 @@
                                    <a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#registroModal2">
                                     <span class="outer-wrap">
                                       <span data-text="Busco un Contador">
-                                        Regístrate Empresario<br>Busco un Contador <i class="bi bi-arrow-right-circle-fill"></i>
+                                        Soy Empresario<br>Busco un Contador <i class="bi bi-arrow-right-circle-fill"></i>
                                       </span>
                                     </span>
                                   </a>
