@@ -51,7 +51,7 @@
 .navbar-nav .active .nav-link:hover, 
 .navbar-nav .nav-item:hover > a, 
 .navbar-nav .nav-link:hover{
-    background-color: rgba(124, 139, 253, 0.9);
+    background-color: #282e67;
     color: var(--white);
 }
 .dropdown-toggle-arrow, 

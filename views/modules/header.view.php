@@ -31,22 +31,27 @@
                             
                             <ul class="navbar-nav" >
                                 <li >
-                                    <a class="nav-link " href="#" >Planes Plataformas contables</a>
+                                    <a class="nav-link " href="#" ria-expanded="false" >·Planes Plataformas contables</a>
                                 </li>
                                 <li></li>
                                 <li> 
-                                    <a class="nav-link " href="#"  aria-expanded="false">Distribuir Firmas</a>
+                                    <a class="nav-link " href="#"  aria-expanded="false">·Distribuir Firmas</a>
                                 </li>
                                    <li>
-                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false">Herramientas contables</a>
+                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false">·Herramientas contables</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Ingresar</a>
-                                     <ul class="dropdown-menu">
+                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false">
+                                        ·Ingresar <i class="bi bi-chevron-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="https://empresarial.contamatic.ec/sistema/">Sistema Contable</a></li>
                                         <li><a class="dropdown-item" href="https://facturacion-electronica.contamatic.ec/factumatic/">Facturero Electrónico </a></li>
+                                        <li><a class="dropdown-item" href="">Admin Contador</a></li>
+                                        <li><a class="dropdown-item" href="">Txr Supercias</a></li>
                                     </ul>
                                 </li>
+
                                   
                                 
                             </ul>
@@ -109,7 +114,7 @@
 
     <style>
     .navbar-nav > li {
-    margin-right: 20px; /* Puedes ajustar este valor */
+    margin-right: 5px; /* Puedes ajustar este valor */
 }
 .logo {
   height: 40px; /* Ajusta el tamaño del logo */

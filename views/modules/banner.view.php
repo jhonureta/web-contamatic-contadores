@@ -11,15 +11,15 @@
                     <div class="col-lg-7">
                         <div class="marketing-banner">
                             <div class="title">
-                                <span>Para contadores y Buffets contables.</span>
+                                <span>Para contadores y Empresarios.</span>
                                 <h1  style="text-align: justify;" class="wow">Plataforma del contador.</h1>
                                 <h1><strong style="color: #282e67;"> Una comunidad que evoluciona contigo</strong></h1>
-                                <p class="lead">Creamos soluciones digitales que simplifican tu trabajo y te ayudan a brindar un mejor servicio a tus clientes.</p>
+                                <p class="lead" style="text-align: justify;">Somos una comunidad de contadores comprometidos con el crecimiento profesional. Las herramientas que ofrecemos son un valioso aporte colaborativo y gratuito de todos los miembros que integran esta red. Continuamos trabajando de manera constante para desarrollar nuevos recursos que optimicen nuestra labor y faciliten nuestra práctica diaria. Siempre estaremos abiertos a tus conocimientos y sugerencias para seguir mejorando juntos.</p>
                                 <div class="cta-group">
                                    <a href="#" class="btn btn-registro" data-bs-toggle="modal" data-bs-target="#registroModal">
                                     <span class="outer-wrap"><span data-text="Regístrate Gratis">Regístrate Contador <i class="bi bi-arrow-right-circle-fill"></i></span>
                                     </a>
-                                   <a href="#" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#registroModal2">
+                                   <a href="#" class="btn btn-busco" data-bs-toggle="modal" data-bs-target="#registroModal2">
                                     <span class="outer-wrap">
                                       <span data-text="Busco un Contador">
                                         Soy Empresario<br>Busco un Contador <i class="bi bi-arrow-right-circle-fill"></i>
@@ -38,6 +38,7 @@
                 </div>
             </div>
         </div>
+      </div>
 
         <b class="screen-overlay"></b>  
         <!--  Signup Form Start -->
@@ -147,23 +148,36 @@
             </div>
             
             
+            
 
             <!-- TAB 2: Crear cuenta -->
             <div class="tab-pane fade" id="cuenta" role="tabpanel">
               <h5 class="fw-bold mb-3">Mi Cuenta</h5>
-              <form>
-                <div class="mb-3">
-                  <label class="form-label text-primary fw-bold">Correo Electrónico</label>
-                  <input type="email" class="form-control" placeholder="Ingrese su correo">
-                </div>
+              <form method="post" id="registroForm" action="controller/contacto.ajax.php" onsubmit="return validateForm()">
+                              <div class="mb-3">
+                <label class="form-label text-primary fw-bold">Correo Electrónico</label>
+                <input type="email" class="form-control" name="correo" 
+                      placeholder="Ingrese su correo" 
+                      required
+                      pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                      title="Ingrese un correo válido, ejemplo: usuario@dominio.com">
+              </div>
+
                 <div class="mb-3">
                   <label class="form-label text-primary fw-bold">Usuario temporal</label>
-                  <input type="text" class="form-control" placeholder="Ingrese un nombre de usuario">
+                  <input type="text" class="form-control" name="usuario" placeholder="Ingrese un nombre de usuario" required>
                 </div>
                 <div class="mb-3">
                   <label class="form-label text-primary fw-bold">Crea una Contraseña</label>
                   <div class="input-group">
-                    <input type="password" class="form-control" id="passwordField" placeholder="Ingrese una clave">
+                    <input type="password" 
+                      class="form-control" 
+                      name="contrasena" 
+                      id="passwordField" 
+                      placeholder="Ingrese una clave" 
+                      required
+                      pattern=".{6,}" 
+                      title="La contraseña debe tener al menos 6 caracteres">
                     <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()">
                       <i class="bi bi-eye"></i>
                     </button>
@@ -174,21 +188,61 @@
                     Acerca de tu Experiencia Profesional <small class="text-muted">(opcional)</small>
                     <i class="bi bi-info-circle-fill" title="Cuéntanos tu experiencia..."></i>
                   </label>
-                  <textarea class="form-control" rows="4" placeholder="Cuéntanos cuántos años de experiencia tienes, en qué tipo de industrias has trabajado, qué software de contabilidad dominas, has manejado auditorías internas o externas..."></textarea>
+                  <textarea class="form-control" name="experiencia" rows="4" placeholder="Cuéntanos cuántos años de experiencia tienes, en qué tipo de industrias has trabajado, qué software de contabilidad dominas, has manejado auditorías internas o externas..."></textarea>
                 </div>
 
                 <!-- Solo se muestra en el tab 'Crear Cuenta' -->
                 <div class="mb-3">
-                  <div class="g-recaptcha" data-sitekey="TU-SITE-KEY"></div> <!-- Asegúrate de reemplazar con tu clave -->
+                  <div class="g-recaptcha" data-sitekey="6LdtRqcrAAAAAOJioGgOgGBjOvDiJ9pyL9qR4c5k"></div> <!-- Asegúrate de reemplazar con tu clave -->
                 </div>
-
+                <script>
+                  document.getElementById("registroForm").addEventListener("submit", function(e) {
+                          var captcha = grecaptcha.getResponse();
+                          if(captcha.length == 0){
+                              e.preventDefault();
+                              alert("Por favor, verifica el captcha antes de enviar.");
+                          }
+                      });
+                </script>
+                <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+                <div id="mensajeRegistro" style="margin-top:15px;"></div>
                 <!-- Botón de Enviar solo en 'Crear Cuenta' -->
                 <div class="d-grid">
                   <button type="submit" class="btn btn-outline-primary btn-sm">
                     <span class="outer-wrap"><span data-text="Registrarse">Registrarse</span></span>
                   </button>
                 </div>
+                <script>
+                          document.getElementById("registroForm").addEventListener("submit", function(e) {
+                              e.preventDefault();
 
+                              var captcha = grecaptcha.getResponse();
+                              if(captcha.length == 0){
+                                  alert("Por favor, verifica el captcha antes de enviar.");
+                                  return;
+                              }
+
+                              var formData = new FormData(this);
+
+                              fetch("controller/contacto.ajax.php", {
+                                  method: "POST",
+                                  body: formData
+                              })
+                              .then(response => response.json())
+                              .then(data => {
+                                  var mensajeDiv = document.getElementById("mensajeRegistro");
+
+                                  if(data.estado){
+                                      mensajeDiv.innerHTML = `<div class="alert alert-success">Usuario registrado correctamente. Revisa tu correo electrónico.</div>`;
+                                      document.getElementById("registroForm").reset();
+                                      grecaptcha.reset();
+                                  } else {
+                                      mensajeDiv.innerHTML = `<div class="alert alert-danger">${data.mensaje}</div>`;
+                                  }
+                              })
+                              .catch(error => console.error("Error:", error));
+                          });
+                          </script>
                 <!-- Información adicional -->
                 <p class="text-muted small mt-3">
                   Al registrarte, aceptas nuestros <a href="javscript:">Términos</a>, <a href="javscript:">Política de Datos</a> y <a href="javscript:">Política de Cookies</a>.
@@ -291,6 +345,8 @@
     const input = document.getElementById('passwordField');
     input.type = input.type === 'password' ? 'text' : 'password';
   }
+
+  
 </script>
 
 
@@ -300,5 +356,5 @@
 
 <!-- Antes de </body> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 

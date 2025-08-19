@@ -478,25 +478,59 @@ label.error {
     border: 1px solid #2a1c5c !important;  /* Borde azul */
     font-weight: 700 !important;            /* Texto en negrita */
     font-size: 14px !important;             /* Tamaño de texto */
-    padding: 10px 15px !important;          /* Espaciado */
+    padding: 12px 25px !important;          /* Espaciado más amplio para un botón más grande */
     text-transform: uppercase !important;   /* Texto en mayúsculas */
     line-height: 36px !important;           /* Ajuste de la altura de línea para centrar el texto */
-    border-radius: 4px !important;          /* Bordes redondeados */
+    border-radius: 50px !important;         /* Bordes más redondeados */
     text-align: center !important;         
     box-shadow: none !important;            /* Sin sombra */
-    white-space: normal !important;         /* Permite que el texto haga salto de línea */
-    word-wrap: break-word !important;       /* Asegura que el texto no se desborde */
+    white-space: nowrap !important;         /* Evita el salto de línea */
     width: auto !important;                 /* Ajuste automático de ancho */
     height: auto !important;                /* Ajuste automático de altura */
+    transition: all 0.3s ease;              /* Suaviza la transición */
 }
 
 .btn-registro:hover,
 .btn-registro:focus,
 .btn-registro:active {
     color: #2a1c5c !important;               /* Azul más oscuro al hover */
-    border-color: #2a1c5c !important;      
+    border-color: #003d80 !important;       /* Borde azul más oscuro al hover */
     background-color: #e6f0ff !important;   /* Fondo azul claro al hover */
-    box-shadow: none !important;
+    box-shadow: none !important;             /* Mantén sin sombra */
+}
+
+
+/*--- btn busco --*/
+.btn-busco {
+    color: #2a1c5c !important;             /* Texto azul */
+    background-color: #fff !important;     /* Fondo blanco */
+    font-weight: 700 !important;            /* Texto en negrita */
+    border: 1px solid #2a1c5c !important;  /* Borde azul */
+    font-size: 14px !important;             /* Tamaño de texto */
+    padding: 10px 25px !important;          /* Padding ajustado para mayor tamaño y comodidad */
+    border-radius: 50px !important;         /* Borde completamente redondeado */
+    display: inline-block;                  /* Asegura que el botón se mantenga en línea */
+    text-align: center;                     /* Centra el texto dentro del botón */
+    white-space: nowrap !important;         /* Evita que el texto se divida en varias líneas */
+    transition: all 0.3s ease;              /* Transición suave para hover/focus */
+    cursor: pointer;                       /* Cambia el cursor al pasar sobre el botón */
+}
+
+.btn-busco:hover,
+.btn-busco:focus,
+.btn-busco:active {
+    color: #2a1c5c !important;              /* Texto azul más oscuro al hover */
+    background-color: #e6f0ff !important;  /* Fondo azul claro al hover */
+    border-color: #003d80 !important;      /* Borde azul oscuro al hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1) !important; /* Agrega una sombra sutil */
+}
+
+@media (max-width: 576px) {
+    .btn-busco {
+        font-size: 12px !important;         /* Ajuste de tamaño de fuente para móviles */
+        padding: 12px 22px !important;      /* Aumento del padding para mejor interactividad en móviles */
+        border-radius: 50px !important;     /* Mantén el borde redondeado */
+    }
 }
 
 
@@ -504,13 +538,16 @@ label.error {
 
 /*--- btn secondary --*/
 .btn.btn-secondary {
-    color: #2a1c5c!important; /* Azul para el texto */
+    color: #2a1c5c !important; /* Azul para el texto */
     background-color: #fff !important; /* Fondo blanco */
     border: 1px solid #2a1c5c !important; /* Borde azul */
     font-weight: 500; /* Opcional, para un texto semi-negrita */
     font-size: 14px; /* Ajusta el tamaño de texto si es necesario */
     padding: 6px 12px; /* Ajusta el padding para que sea más similar */
     border-radius: 4px; /* Ajusta el radio de borde si quieres */
+    display: inline-block; /* Asegura que el botón se mantenga en línea */
+    text-align: center; /* Centra el texto dentro del botón */
+    white-space: nowrap; /* Evita que el texto se divida en varias líneas */
 }
 
 .btn.btn-secondary:hover,
@@ -520,6 +557,16 @@ label.error {
     background-color: #e6f0ff !important; /* Fondo muy suave azul al hover */
     border-color: #003d80 !important;
 }
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 576px) {
+    .btn.btn-secondary {
+        font-size: 12px; /* Ajusta el tamaño de la fuente para móviles */
+        padding: 8px 16px; /* Aumenta el padding para un botón más grande en móviles */
+        border-radius: 4px; /* Mantén el radio de borde consistente */
+    }
+}
+
 
 
 /*--- btn success --*/
@@ -1179,7 +1226,7 @@ label.error {
 /*---- 4.6 Preloader ---*/
 #pageloader {
     background: var(--primary);
-    background: linear-gradient(180deg, rgba(1, 40, 79, 0.00) 70%, #5763de 100%), rgb(17, 34, 87, 70%);
+    background: linear-gradient(180deg, rgba(1, 40, 79, 0.00) 70%,#6f42c1 100%), rgba(170, 152, 218, 0.7);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     height: 100%;
@@ -1207,7 +1254,7 @@ label.error {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: url(../images/favicon.svg) no-repeat center center;
+    background: url(../images/contamatic1.1.gif) no-repeat center center;
 }
 /* .loader-item-content {
     background: url(../images/favicon.svg) no-repeat center center;
@@ -1825,7 +1872,7 @@ blockquote.light footer cite, .blockquote.light footer cite{
     border-radius: 3px 3px 0 0;
 }
 .nav-link:hover {
-    color: var(--primary);
+    color: #2a1c5c ;
 }
 .dropdown-menu {
     padding: 0;
@@ -2430,9 +2477,9 @@ footer .text h4{
 }
 .icon-style-border-bottom .arrow-icon a{
     margin-bottom: -3.5rem;
-    border: 1px solid var(--default);
+    border: 1px solid var(#282e67);
     background: var(--white);
-    color: var(--default);
+    color: var(#282e67);
 }
 .icon-style-border-bottom:hover .arrow-icon a{
     background: var(--dark);
@@ -3340,7 +3387,7 @@ footer .text h4{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--primary);
+    background: #282e67;
     color: var(--white);
     border-radius: 50%;
     font-size: 1.2rem;
@@ -3430,7 +3477,7 @@ footer .text h4{
 .section-title h2 strong,
 .marketing-banner .title h1 strong,
 .section-title h1 strong{
-    color: rgba( var(--primary-rgb), 0.7);
+    color: #282e67;
     font-weight: 600;
 }
 

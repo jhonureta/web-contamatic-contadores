@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>Serenite &#8211; Saas Software Landing & Startup Agency Template</title>
 
-    <meta name="author" content="Mannat Studio">     
+    <meta name="author" content="Systemwork S.A">     
     <meta name="description" content="Serenite is a Responsive HTML5 Template for SaaS, cryptocurrency, app and tech companies, as well as for digital studios.">
     <meta name="keywords" content="Serenite, themeforest template, app, app landing page, App Showcase, cryptocurrency, digital studio, saas, saas landing, saas theme, software, software company website, software startup, startup, startup landing page, startup wordpress, technology">
 
     <!-- Favicon -->    
-    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,7 +28,7 @@
        <!-- Page loader Start -->
     <div id="pageloader">
         <div class="loader-item">
-            <img src="assets/images/tail-spin.svg" width="80" alt="">
+            <img src="assets/images/contamatic1.1.gif" width="100" alt="">
         </div>
     </div>
      <div class="home-default">

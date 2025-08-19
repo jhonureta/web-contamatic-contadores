@@ -1,8 +1,8 @@
     <!-- Page Content Start -->
-    <main id="body-content">        
-
+      
+<main id="body-content">   
         <!-- Logo Carousel -->
-        <section class="section-spacing logo-carousel">
+        <section class="section-spacing  logo-carousel">
             <div class="container">
                 <div class="owl-carousel owl-theme top-right-arrow" id="client-home-default">
                     <div class="item">
@@ -37,6 +37,7 @@
                     </div>
                 </div>
             </div>
+        
         </section>
         <!-- Logo Carousel -->
          <style>
@@ -77,7 +78,7 @@
 
 
         <!-- Why Chose Us? -->
-        <section class="section-spacing home-ideas-wrap">            
+        <section class="section-spacing  home-ideas-wrap">            
             <div class="container pos-rel">
                 <div class="square-top">
                     <img src="assets/images/square_large.svg" alt="">
@@ -85,12 +86,13 @@
                 <div class="row">                    
                     <div class="col-xl-3 col-lg-6 col-md-6">
                         <div class="section-title text-start mb-0">
-                            <span>Why Chose Us?</span>
-                            <h2 class="wow">Turn Your Amazing <strong>Ideas Into Reality</strong></h2>
+                            <span>¿Por Qué Unirte a Nuestro Programa?</span>
+                            <h2 class="wow">💼 Gana con nuestros <strong>Planes Contables y de Facturación Electrónica </strong></h2>
                             <ul class="list-unstyled icons-listing theme-primary check">
-                                <li>Machine learning enabled projections</li>
-                                <li>Visitor mouse and click tracking</li>
-                                <li>Automated revenue suggestions</li>
+                                <li>Imagina el Futuro de tu Empresa</li>
+                                <li>Tu Socio Ideal en el Mundo Digital</li>
+                                <li>Lidera el Cambio con Herramientas de Innovación</li>
+                                <li>Innovar es Crecer: ¡Hazlo Hoy</li>
                             </ul>
 
                             <a href="our-services.html" class="btn btn-default btn-rounded mt-3"><span class="outer-wrap"><span data-text="View All Services">View All Services</span></span></a>
@@ -103,8 +105,8 @@
                                 <i class="srn-icon-design-creativity"></i>
                             </div>                            
                             <div class="text">
-                                <h6>Design & Creativity</h6>
-                                <p>We use the latest technologies it voluptatem accusantium do loremque laudantium.</p>
+                                <h6>Planes de Facturación Electrónica</h6>
+                                <p style="text-align: justify ;">Ofrecemos planes de facturación electrónica diseñados para facilitar la gestión y cumplimiento fiscal de tu negocio. Con nuestros planes, podrás emitir facturas electrónicas de manera rápida, segura y completamente legal.</p>
                                 <div class="arrow-icon">
                                     <a href="service-single.html"><i class="srn-arrow-right"></i></a>
                                 </div>
@@ -118,8 +120,9 @@
                                 <i class="srn-icon-digital-marketing"></i>
                             </div>                            
                             <div class="text">
-                                <h6>Digital Marketing</h6>
-                                <p>We use the latest technologies it voluptatem accusantium do loremque laudantium.</p>
+                                <h6>Planes de Sistema Contable</h6>
+                                <p>"Gestiona tus Finanzas de Forma Eficiente y Sin Errores"
+Con nuestros sistemas contables, tendrás todas las herramientas para llevar el control total de tu contabilidad y finanzas, asegurando precisión y facilidad en tu trabajo.</p>
                                 <div class="arrow-icon">
                                     <a href="service-single.html"><i class="srn-arrow-right"></i></a>
                                 </div>
@@ -133,8 +136,8 @@
                                 <i class="srn-icon-technology-innovation"></i>
                             </div>                            
                             <div class="text">
-                                <h6>Technology Innovation</h6>
-                                <p>We use the latest technologies it voluptatem accusantium do loremque laudantium.</p>
+                                <h6>Soporte técnico incluido</h6>
+                                <p>Recibe asistencia especializada en todo momento. Nuestro equipo de soporte está disponible para resolver tus dudas y garantizar que todo funcione sin problemas. ¡Estamos aquí para ayudarte!</p>
                                 <div class="arrow-icon">
                                     <a href="service-single.html"><i class="srn-arrow-right"></i></a>
                                 </div>
@@ -142,17 +145,16 @@
                         </div>
                     </div>
                     <div class="col-md-12 mt-5">
-                        <p class="text-center wow pulse" data-wow-delay="0.5s">Let’s Come Up With a <strong class="txt-primary">Start Free Trial 30-Day Money Back Guarantee</strong> For New Purchases&ZeroWidthSpace;. </p>
+                        <p class="text-center wow pulse" data-wow-delay="0.5s">Si tu cliente adquiere<strong class="txt-primary"> un plan de $100, ¡tú recibes $50 de comisión directa!</strong> &ZeroWidthSpace;. </p>
                     </div>
-                </div>    
-                
-                
+                </div>                   
             </div>
+            
         </section>
         <!-- Why Chose Us? -->
 
         <!-- Products successfully launced -->
-        <section class="section-spacing bg-light-blue section-padding home-default-video pb-0">
+        <section class="section-spacing  section-padding home-default-video pb-0">
             <div class="container">
                 <div class="row pos-rel">
                     <div class="col-lg-5 mb-0">
@@ -792,5 +794,4 @@
             </div>
         </section>
         <!-- Need Help With Our Services -->
-        
-    </main>
+</main>

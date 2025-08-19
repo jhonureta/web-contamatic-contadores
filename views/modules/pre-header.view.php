@@ -13,7 +13,7 @@
                         <div class="col-md-6">
                             <div class="top-bar-links">
                                 <a href="#"><i class="bi bi-envelope"></i> systemworksa@gmail.com</a>
-                                <a href="#"><i class="bi bi-whatsapp"></i> +593 99 909 7984</a>
+                                <i class="bi bi-telephone text-white"></i><a href="https://wa.me/593999097984" target="_blank"> +593 99 909 7984</a>
                             </div>
                         </div>                        
                     </div>
