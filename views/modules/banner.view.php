@@ -16,9 +16,13 @@
                                 <h1><strong style="color: #282e67;"> Una comunidad que evoluciona contigo</strong></h1>
                                 <p class="lead" style="text-align: justify;">Somos una comunidad de contadores comprometidos con el crecimiento profesional. Las herramientas que ofrecemos son un valioso aporte colaborativo y gratuito de todos los miembros que integran esta red. Continuamos trabajando de manera constante para desarrollar nuevos recursos que optimicen nuestra labor y faciliten nuestra práctica diaria. Siempre estaremos abiertos a tus conocimientos y sugerencias para seguir mejorando juntos.</p>
                                 <div class="cta-group">
-                                   <a href="#" class="btn btn-registro" data-bs-toggle="modal" data-bs-target="#registroModal">
-                                    <span class="outer-wrap"><span data-text="Regístrate Gratis">Regístrate Contador <i class="bi bi-arrow-right-circle-fill"></i></span>
-                                    </a>
+                    <a href="#" class="btn btn-registro" data-bs-toggle="modal" data-bs-target="#registroModal">
+    <span class="outer-wrap">
+        <span data-text="Regístrate Gratis">Regístrate Contador <i class="bi bi-arrow-right-circle-fill"></i></span>
+    </span>
+</a>
+
+
                                    <a href="#" class="btn btn-busco" data-bs-toggle="modal" data-bs-target="#registroModal2">
                                     <span class="outer-wrap">
                                       <span data-text="Busco un Contador">
@@ -91,9 +95,10 @@
  
 <!-- Modal con pestañas -->
 <div class="modal fade" id="registroModal" tabindex="-1" aria-labelledby="registroModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content" style="border-radius: 10px;">
-      <div class="row g-0">
+  <div class="modal-dialog modal-dialog-centered" style="max-width: 1200px; width: 100%;">
+
+    <div class="modal-content" style="border-radius: 10px; max-height: 90vh; height: 100%;">
+      <div class="row g-0 h-100">
         <!-- Formulario izquierdo -->
         <div class="col-md-6 p-4">
           <!-- Botón cerrar -->
@@ -137,8 +142,8 @@
                     <div class="d-flex align-items-center p-3 border rounded shadow-sm" style="background-color: #f5f5f5;">
                         <p class="text-muted mb-0">
                         <strong>Atención personalizada para contadores, contáctanos</strong><br>
-                        Telf: <a href="https://wa.me/593980606086" target="_blank" class="text-success">
-                            +593 980606086</a>
+                        Telf: <a href="https://wa.me/59399 909 7984" target="_blank" class="text-success">
+                            +593 99 909 7984</a>
                         <i class="bi bi-whatsapp" style="color: #25D366; font-size: 18px; margin-left: 8px;"></i>
                         </p>
                     </div>
@@ -253,13 +258,20 @@
         </div>
 
         <!-- Imagen derecha -->
-        <div class="col-md-6 d-none d-md-block">
-          <div class="h-100" style="background-image: url('assets/images/publicidad3.jpeg'); background-size: cover; background-position: center; border-top-right-radius: 10px; border-bottom-right-radius: 10px;"></div>
+          <div class="col-md-6 d-none d-md-flex p-0 align-items-center justify-content-center"
+            style="border-top-right-radius: 10px; border-bottom-right-radius: 10px; background-color: #fff;">
+          <img src="assets/images/publicidad3.jpeg"
+              alt="Publicidad contable"
+              class="img-fluid"
+              style="max-height: 100%; max-width: 100%; object-fit: contain;" />
         </div>
+
+
       </div>
     </div>
   </div>
 </div>
+
 
 
 <!-- Modal con pestañas 2 -->
@@ -269,7 +281,7 @@
     <div class="modal-content" style="border-radius: 10px; max-height: 90vh;">
       <div class="row g-0">
         <!-- Formulario izquierdo -->
-        <div class="col-md-6 p-4" style="background-color: #ffffff; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
+        <div class="col-md-6 p-4" style=" margin-top: 60px; background-color: #ffffff; border-top-left-radius: 10px; border-bottom-left-radius: 10px;">
           <!-- Botón cerrar -->
           <div class="d-flex justify-content-start mb-3">
             <button type="button" class="btn-close me-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
@@ -324,12 +336,12 @@
               </button>
             </div>
           </form>
-        </div>
+      </div>
 
         <!-- Imagen derecha -->
-        <div class="col-md-6 d-none d-md-block" style="background-image: url('assets/images/publicidadEmpresarioContador.jpg'); background-size: cover; background-position: center center; background-repeat: no-repeat; border-top-right-radius: 10px; border-bottom-right-radius: 10px;">
-          <!-- Imagen se ajusta automáticamente al contenedor -->
-        </div>
+        <div class="col-md-6 d-none d-md-block p-0">
+            <img src="assets/images/publicidadEmpresarioContador.jpg" alt="¿Y necesitas un contador?" class="img-fluid rounded-end" />
+          </div>
       </div>
     </div>
   </div>

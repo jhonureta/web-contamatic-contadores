@@ -227,7 +227,7 @@
     right: auto;
 }
 .home-default-video .video-play-btn a{
-    background: var(--primary);
+    background: #282e67;
 }
 
 .home-default-video .video-play-btn .popup-video {

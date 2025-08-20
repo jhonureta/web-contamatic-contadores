@@ -514,6 +514,8 @@ label.error {
     white-space: nowrap !important;         /* Evita que el texto se divida en varias líneas */
     transition: all 0.3s ease;              /* Transición suave para hover/focus */
     cursor: pointer;                       /* Cambia el cursor al pasar sobre el botón */
+    max-width: 300px !important;            /* Limita el ancho máximo para evitar estiramiento */
+    box-sizing: border-box !important;     /* Incluye padding y border en el ancho */
 }
 
 .btn-busco:hover,
@@ -526,12 +528,17 @@ label.error {
 }
 
 @media (max-width: 576px) {
-    .btn-busco {
-        font-size: 12px !important;         /* Ajuste de tamaño de fuente para móviles */
-        padding: 12px 22px !important;      /* Aumento del padding para mejor interactividad en móviles */
-        border-radius: 50px !important;     /* Mantén el borde redondeado */
+    .btn-busco, .btn-registro {
+        width: 110% !important;               /* Un poco más ancho que el contenedor */
+        max-width: none !important;
+        margin-left: -5%;                     /* Centra el botón */
+        white-space: normal !important;
+        box-sizing: border-box !important;
+        display: block !important;
     }
 }
+
+
 
 
 
@@ -1226,7 +1233,7 @@ label.error {
 /*---- 4.6 Preloader ---*/
 #pageloader {
     background: var(--primary);
-    background: linear-gradient(180deg, rgba(1, 40, 79, 0.00) 70%,#6f42c1 100%), rgba(170, 152, 218, 0.7);
+    background: linear-gradient(180deg, rgba(1, 40, 79, 0.00) 70%,#4100bb 100%), rgba(56, 6, 192, 0.7);
     -webkit-backdrop-filter: blur(20px);
     backdrop-filter: blur(20px);
     height: 100%;
@@ -1850,7 +1857,12 @@ blockquote.light footer cite, .blockquote.light footer cite{
     flex-shrink: 0;
 }
 .navbar-brand img {
-    width: 165px;
+    height: 60px; /* elige la altura que necesites */
+    width: auto; /* mantiene la proporción original */
+}
+.navbar-brand1 img {
+    height: 80px; /* elige la altura que necesites */
+    width: auto; /* mantiene la proporción original */
 }
 .nav-item:not(:last-child) {
     margin-right: 0.3rem;
