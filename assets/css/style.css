@@ -529,9 +529,9 @@ label.error {
 
 @media (max-width: 576px) {
     .btn-busco, .btn-registro {
-        width: 110% !important;               /* Un poco más ancho que el contenedor */
+        width: 80% !important;               /* Un poco más ancho que el contenedor */
         max-width: none !important;
-        margin-left: -5%;                     /* Centra el botón */
+        margin-left: 10%;                     /* Centra el botón */
         white-space: normal !important;
         box-sizing: border-box !important;
         display: block !important;
@@ -1860,10 +1860,20 @@ blockquote.light footer cite, .blockquote.light footer cite{
     height: 60px; /* elige la altura que necesites */
     width: auto; /* mantiene la proporción original */
 }
-.navbar-brand1 img {
-    height: 80px; /* elige la altura que necesites */
-    width: auto; /* mantiene la proporción original */
+.navbar-brand1 {
+    height: 60px;            /* Altura visible */
+    overflow: hidden;        /* Oculta lo que sobrepasa */
+    display: flex;           /* Opcional: para centrar imagen verticalmente */
+    align-items: center;     /* Centrado vertical */
 }
+
+.navbar-brand1 img {
+    height: 100px;           /* Más alto que el contenedor para permitir recorte */
+    width: auto;
+    margin-top: -20px;       /* Ajusta este valor para controlar cuánto se recorta de arriba */
+}
+
+
 .nav-item:not(:last-child) {
     margin-right: 0.3rem;
 }
@@ -4115,17 +4125,8 @@ hr:not([size]) {
     background: var(--light-blue);
     width: 1px;
 }
+
 /* 7.12 Faq's Counter Text End */
-
-
-
-
-
-
-
-
-
-
 
 
 

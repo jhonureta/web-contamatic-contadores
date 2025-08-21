@@ -78,13 +78,13 @@
 
 
         <!-- Why Chose Us? -->
-<section class="section-spacing  home-ideas-wrap">            
-    <div class="container pos-rel">
-        <div class="square-top">
+<section id="planes_contables" class="section-spacing  home-ideas-wrap"  >            
+    <div class="container pos-rel"  >
+        <div class="square-top" style="margin-top: 100px;">
                     <img src="assets/images/square_large.svg" alt="">
                     </div>
                 <div class="row">                    
-                    <div class="col-xl-3 col-lg-6 col-md-6">
+                    <div class="col-xl-3 col-lg-6 col-md-6  mx-auto" >
                         <div class="section-title text-start mb-0">
                             <span>¿Por Qué Unirte a Nuestro Comunidad?</span>
                             <h2 class="wow">💼 Gana con nuestros <strong>Planes Contables y de Facturación Electrónica </strong></h2>
@@ -150,10 +150,19 @@ Con nuestros sistemas contables, tendrás todas las herramientas para llevar el 
         </div>                   
     </div>            
 </section>
+<style>
+#planes_contables{
+  scroll-margin-top: 100px; /* Ajusta el valor según lo que necesites */
+}
+</style>
+
+
+
+</style>
         <!-- Why Chose Us? -->
 
         <!-- Products successfully launced -->
-<section class="section-spacing section-padding bg-light-blue  home-default-video pb-0">
+<section id="distribuir_firmas" class="section-spacing section-padding bg-light-blue  home-default-video pb-0">
     <div class="container">
         <div class="row pos-rel">
             <!-- NUEVO CONTENIDO -->
@@ -194,12 +203,16 @@ Con nuestros sistemas contables, tendrás todas las herramientas para llevar el 
         </div>
     </div>
 </section>
-
+<style>
+#distribuir_firmas{
+  scroll-margin-top: 100px; /* Ajusta el valor según lo que necesites */
+}
+</style>
 
         <!-- Products successfully launced -->
 
         <!-- Planning on Developing a Product -->
-      <section class="section-spacing">
+      <section id="herramientas_contables" class="section-spacing">
     <div class="container">
         <div class="row align-items-center">
             <div class="col-lg-6 col-xl-7 wow slideInLeft"  style="margin-top: 50px;">
@@ -228,6 +241,10 @@ Con nuestros sistemas contables, tendrás todas las herramientas para llevar el 
         </div>
     </div>
 </section>
-
+<style>
+#herramientas_contables{
+  scroll-margin-top: 100px; /* Ajusta el valor según lo que necesites */
+}
+</style>
         <!-- Planning on Developing a Product -->
 </main>

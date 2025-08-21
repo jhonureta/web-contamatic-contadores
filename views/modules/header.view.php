@@ -21,24 +21,34 @@
 
                     <div class="navbar-collapse offcanvas offcanvas-start offcanvas-collapse" id="navbarCollapse">
                         <div class="offcanvas-header">
-                            <a class="navbar-brand" href="index.php"><img src="assets/images/logo_nav.svg" alt=""></a>
+                            <a class="navbar-brand1" href="index.php"><img src="assets/images/logo_nav.svg" alt=""></a>
                             <button class="navbar-toggler x collapsed" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarCollapse"
                             aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="bi bi-x-lg"></i>
                             </button>
                         </div>
+                        <style>
+                            .offcanvas-header {
+  height: 100px;       /* Ajusta según lo que desees mostrar */
+  overflow: hidden;    /* Oculta lo que se salga de ese alto */
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Opcional: centra horizontalmente */
+}
+
+                        </style>
                         <div class="offcanvas-body" data-lenis-prevent>
                             
                             <ul class="navbar-nav" >
                                 <li >
-                                    <a class="nav-link " href="#" ria-expanded="false" >·Planes Plataformas contables</a>
+                                    <a class="nav-link " href="\nuevo-proyecto\#planes_contables" ria-expanded="false" >·Planes Plataformas contables</a>
                                 </li>
                                 <li></li>
                                 <li> 
-                                    <a class="nav-link " href="#"  aria-expanded="false">·Distribuir Firmas</a>
+                                    <a class="nav-link " href="\nuevo-proyecto\#distribuir_firmas"  aria-expanded="false">·Distribuir Firmas</a>
                                 </li>
                                    <li>
-                                    <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false">·Herramientas contables</a>
+                                    <a class="nav-link " href="\nuevo-proyecto\#herramientas_contables"  aria-expanded="false">·Herramientas contables</a>
                                 </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link " href="#" data-bs-toggle="dropdown" aria-expanded="false">
