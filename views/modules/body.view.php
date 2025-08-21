@@ -108,7 +108,7 @@
                                 <h6>Planes de Facturación Electrónica</h6>
                                 <p style="text-align: justify ;">Ofrecemos planes de facturación electrónica diseñados para facilitar la gestión y cumplimiento fiscal de tu negocio. Con nuestros planes, podrás emitir facturas electrónicas de manera rápida, segura y completamente legal.</p>
                                 <div class="arrow-icon">
-                                    <a href="service-single.html"><i class="srn-arrow-right"></i></a>
+                                    <a href="https://wa.me/593999097984" target="_blank"><i class="srn-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -124,7 +124,7 @@
                                 <p>"Gestiona tus Finanzas de Forma Eficiente y Sin Errores"
 Con nuestros sistemas contables, tendrás todas las herramientas para llevar el control total de tu contabilidad y finanzas, asegurando precisión y facilidad en tu trabajo.</p>
                                 <div class="arrow-icon">
-                                    <a href="service-single.html"><i class="srn-arrow-right"></i></a>
+                                    <a href="https://wa.me/593999097984" target="_blank"><i class="srn-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +139,7 @@ Con nuestros sistemas contables, tendrás todas las herramientas para llevar el 
                                 <h6>Soporte técnico incluido</h6>
                                 <p>Recibe asistencia especializada en todo momento. Nuestro equipo de soporte está disponible para resolver tus dudas y garantizar que todo funcione sin problemas. ¡Estamos aquí para ayudarte!</p>
                                 <div class="arrow-icon">
-                                    <a href="service-single.html"><i class="srn-arrow-right"></i></a>
+                                    <a href="https://wa.me/593999097984" target="_blank"><i class="srn-arrow-right"></i></a>
                                 </div>
                             </div>
                         </div>
