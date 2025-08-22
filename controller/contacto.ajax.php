@@ -21,10 +21,19 @@ class AjaxContacto {
         }
 
         // Recibir datos del formulario
-        $correo      = trim($_POST["correo"]);
-        $usuario     = trim($_POST["usuario"]);
-        $clave       = trim($_POST["contrasena"]);
-        $experiencia = isset($_POST["experiencia"]) ? trim($_POST["experiencia"]) : null;
+       // Recibir datos del formulario (usar isset para evitar Notice)
+$correo      = isset($_POST["correo"]) ? trim($_POST["correo"]) : '';
+$usuario     = isset($_POST["usuario"]) ? trim($_POST["usuario"]) : '';
+$clave       = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]) : '';
+$experiencia = isset($_POST["experiencia"]) ? trim($_POST["experiencia"]) : null;
+$nombres     = isset($_POST["nombres_apellidos"]) ? trim($_POST["nombres_apellidos"]) : '';
+$cedula      = isset($_POST["cedula"]) ? trim($_POST["cedula"]) : '';
+$direccion   = isset($_POST["direccion"]) ? trim($_POST["direccion"]) : null;
+$telefono    = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
+
+
+
+
 
         // Validar duplicado
         $validar = array(
@@ -42,9 +51,9 @@ class AjaxContacto {
 
         // Armar array para insertar en la base principal
         $datos = array(
-            "IDE_USUEMP"      => $idUsuario,
-            "NOM_USUEMP"      => $usuario,
-            "DIR_USUEMP"      => null,
+            "IDE_USUEMP"      => $cedula,
+            "NOM_USUEMP"      => $nombres,
+            "DIR_USUEMP"      => $direccion,
             "EMA_USUEMP"      => $correo,
             "ALI_USUEMP"      => $usuario,
             "PASS_USUEMP"     => $clave,
@@ -54,7 +63,7 @@ class AjaxContacto {
             "PLAN_USUEMP"     => "normal",
             "CANTPLAN_USUEMP" => null,
             "ADMINCRE_USUEMP" => 1,
-            "TELF_USUEMP"     => null,
+            "TELF_USUEMP"     => $telefono,
             "ORIGEN_USUEMP"   => 1,
             "EST_TERMINOS"    => 0,
             "COUNT_SMS"       => 0,
@@ -76,9 +85,9 @@ class AjaxContacto {
 
         // Guardar también en la base contamatic_facturacion_electronica
         $datosContamatic = array(
-            "IDE_USUEMP"      => $idUsuario, // ahora coincide con la base principal
-            "NOM_USUEMP"      => $usuario,
-            "DIR_USUEMP"      => null,
+            "IDE_USUEMP"      => $cedula, // ahora coincide con la base principal
+            "NOM_USUEMP"      => $nombres,
+            "DIR_USUEMP"      => $direccion,
             "EMA_USUEMP"      => $correo,
             "PASS_USUEMP"     => substr($clave, 0, 50),
             "ALI_USUEMP"      => $usuario,
@@ -88,7 +97,7 @@ class AjaxContacto {
             "PLAN_USUEMP"     => "normal",
             "CANTPLAN_USUEMP" => 0,
             "ADMINCRE_USUEMP" => 1,
-            "TELF_USUEMP"     => null,
+            "TELF_USUEMP"     => $telefono,
             "COUNT_SMS"       => 0
         );
 
@@ -100,8 +109,8 @@ class AjaxContacto {
 
         // Enviar correo (si está configurado)
         $correoData = array(
-            "nombre"         => $usuario,
-            "identificacion" => $idUsuario,
+            "nombre"         => $nombres,
+            "identificacion" => $cedula,
             "correo"         => $correo,
             "nick"           => $usuario,
             "clave"          => $clave
@@ -110,7 +119,7 @@ class AjaxContacto {
 
         echo json_encode(array(
             "estado" => true,
-            "mensaje" => "Registro exitoso. Tu código único es: " . $idUsuario
+            "mensaje" => "Registro exitoso. Tu código único es: " . $usuario
         ), JSON_UNESCAPED_UNICODE);
 
         // ---------------------
@@ -119,9 +128,9 @@ class AjaxContacto {
         if (!$registroContamatic["estado"]) {
             // Solo para probar admin: datos de prueba
             $datosContamatic = array(
-                "IDE_USUEMP"      => $idUsuario,
-                "NOM_USUEMP"      => $usuario,
-                "DIR_USUEMP"      => null,
+                "IDE_USUEMP"      => $cedula,
+                "NOM_USUEMP"      => $nombres,
+                "DIR_USUEMP"      => $direccion,
                 "EMA_USUEMP"      => $correo,
                 "PASS_USUEMP"     => $clave,
                 "ALI_USUEMP"      => $usuario,
@@ -131,7 +140,7 @@ class AjaxContacto {
                 "PLAN_USUEMP"     => "normal",
                 "CANTPLAN_USUEMP" => null,
                 "ADMINCRE_USUEMP" => 1,
-                "TELF_USUEMP"     => null,
+                "TELF_USUEMP"     => $telefono,
                 "COUNT_SMS"       => 0
             );
 
@@ -143,7 +152,7 @@ class AjaxContacto {
 
             // Enviar correo (si está configurado)
             $correoData = array(
-                "nombre"         => $usuario,
+                "nombre"         => $nombres,
                 "identificacion" => $idUsuario,
                 "correo"         => $correo,
                 "nick"           => $usuario,
@@ -153,7 +162,7 @@ class AjaxContacto {
 
             echo json_encode(array(
                 "estado" => true,
-                "mensaje" => "Registro exitoso. Tu código único es: " . $idUsuario
+                "mensaje" => "Registro exitoso. Tu código único es: " . $usuario
             ), JSON_UNESCAPED_UNICODE);
         }
     }

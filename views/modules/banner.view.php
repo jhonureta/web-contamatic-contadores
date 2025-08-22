@@ -118,23 +118,66 @@
             <div class="tab-pane fade show active" id="contacto" role="tabpanel">
               <h5 class="fw-bold mb-3">¿Ya estás registrado?</h5>
               <p class="text-muted small">Únete a nosotros de manera fácil y rápida. <strong>Regístrate Gratis.</strong></p>
-              <form>
+              <form method="post" id="datospersonales" action="controller/contacto.ajax.php" >
                 <div class="mb-3">
                   <label class="form-label text-primary fw-bold">Nombres y Apellidos</label>
-                  <input type="text" class="form-control" placeholder="Ingrese sus Nombres y Apellidos">
+                  <input type="text" class="form-control" name="nombres_apellidos" placeholder="Ingrese sus Nombres y Apellidos">
                 </div>
                 <div class="mb-3">
-                  <label class="form-label text-primary fw-bold">Cédula o RUC</label>
-                  <input type="text" class="form-control" placeholder="Ingrese su documento">
-                </div>
+                    <label class="form-label text-primary fw-bold">Cédula o RUC</label>
+                    <input type="text" class="form-control" name="cedula" id="cedula"
+                          placeholder="Ingrese su documento"
+                          maxlength="13" required
+                          pattern="^([0-9]{10}|[0-9]{13})$"
+                          title="Ingrese una cédula (10 dígitos) o un RUC (13 dígitos)">
+                    <small id="errorCedula" style="color:red; display:none;">Documento inválido. Debe ser 10 o 13 dígitos.</small>
+                  </div>
+
+                  <script>
+                  const cedula = document.getElementById("cedula");
+                  const errorCedula = document.getElementById("errorCedula");
+                  const patternCedula = /^([0-9]{10}|[0-9]{13})$/;
+
+                  cedula.addEventListener("blur", () => {
+                    if (!patternCedula.test(cedula.value)) {
+                      errorCedula.style.display = "block";
+                      cedula.style.borderColor = "red";
+                    } else {
+                      errorCedula.style.display = "none";
+                      cedula.style.borderColor = "green";
+                    }
+                  });
+                  </script>
                 <div class="mb-3">
                   <label class="form-label text-primary fw-bold">Cantón / Donde desea asignación de clientes</label>
-                  <input type="text" class="form-control" placeholder="Ingrese un cantón">
+                  <input type="text" class="form-control" name="direccion" placeholder="Ingrese un cantón">
                 </div>
-                <div class="mb-3">
-                  <label class="form-label text-primary fw-bold">Teléfono</label>
-                  <input type="text" class="form-control" placeholder="Ingrese su número de teléfono">
-                </div>
+               <div class="mb-3">
+                        <label class="form-label text-primary fw-bold">Teléfono</label>
+                        <input type="text" class="form-control" id="telefono" name="telefono"
+                              placeholder="Ingrese su número de teléfono"
+                              pattern="^[0-9]{10}$"
+                              title="El número debe tener exactamente 10 dígitos"
+                              required>
+                        <small id="error" style="color:red; display:none;">Número inválido. Debe tener 10 dígitos.</small>
+                      </div>
+
+                      <script>
+                      const telefono = document.getElementById("telefono");
+                      const error = document.getElementById("error");
+                      const pattern = /^[0-9]{10}$/;
+
+                      telefono.addEventListener("blur", () => {
+                        if (!pattern.test(telefono.value)) {
+                          error.style.display = "block";
+                          telefono.style.borderColor = "red";
+                        } else {
+                          error.style.display = "none";
+                          telefono.style.borderColor = "green";
+                        }
+                      });
+                      </script>
+
                 <p class="text-danger small mt-3">Llenar datos sección CREAR CUENTA</p>
 
                 <!-- Información de contacto con WhatsApp -->
@@ -217,37 +260,48 @@
                     <span class="outer-wrap"><span data-text="Registrarse">Registrarse</span></span>
                   </button>
                 </div>
-                <script>
-                          document.getElementById("registroForm").addEventListener("submit", function(e) {
-                              e.preventDefault();
+              <script>
+document.getElementById("registroForm").addEventListener("submit", function(e) {
+    e.preventDefault();
 
-                              var captcha = grecaptcha.getResponse();
-                              if(captcha.length == 0){
-                                  alert("Por favor, verifica el captcha antes de enviar.");
-                                  return;
-                              }
+    // Validar captcha
+    var captcha = grecaptcha.getResponse();
+    if(captcha.length == 0){
+        alert("Por favor, verifica el captcha antes de enviar.");
+        return;
+    }
 
-                              var formData = new FormData(this);
+    // Combinar datos de ambos formularios
+    var formDatos = new FormData(document.getElementById("datospersonales")); // primer formulario
+    var formCuenta = new FormData(this); // segundo formulario
 
-                              fetch("controller/contacto.ajax.php", {
-                                  method: "POST",
-                                  body: formData
-                              })
-                              .then(response => response.json())
-                              .then(data => {
-                                  var mensajeDiv = document.getElementById("mensajeRegistro");
+    // Agregar los campos del segundo formulario al primero
+    for (var [key, value] of formCuenta.entries()) {
+        formDatos.append(key, value);
+    }
 
-                                  if(data.estado){
-                                      mensajeDiv.innerHTML = `<div class="alert alert-success">Usuario registrado correctamente. Revisa tu correo electrónico.</div>`;
-                                      document.getElementById("registroForm").reset();
-                                      grecaptcha.reset();
-                                  } else {
-                                      mensajeDiv.innerHTML = `<div class="alert alert-danger">${data.mensaje}</div>`;
-                                  }
-                              })
-                              .catch(error => console.error("Error:", error));
-                          });
-                          </script>
+    // Enviar al servidor
+    fetch("controller/contacto.ajax.php", {
+        method: "POST",
+        body: formDatos
+    })
+    .then(response => response.json())
+    .then(data => {
+        var mensajeDiv = document.getElementById("mensajeRegistro");
+
+        if(data.estado){
+            mensajeDiv.innerHTML = `<div class="alert alert-success">Usuario registrado correctamente. Revisa tu correo electrónico.</div>`;
+            document.getElementById("datospersonales").reset();
+            document.getElementById("registroForm").reset();
+            grecaptcha.reset();
+        } else {
+            mensajeDiv.innerHTML = `<div class="alert alert-danger">${data.mensaje}</div>`;
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+</script>
+
                 <!-- Información adicional -->
                 <p class="text-muted small mt-3">
                   Al registrarte, aceptas nuestros <a href="javscript:">Términos</a>, <a href="javscript:">Política de Datos</a> y <a href="javscript:">Política de Cookies</a>.
