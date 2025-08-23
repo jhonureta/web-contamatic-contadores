@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Serenite &#8211; Saas Software Landing & Startup Agency Template</title>
+    <title>Contamatic - Plataforma del contador</title>
 
     <meta name="author" content="Systemwork S.A">     
     <meta name="description" content="Serenite is a Responsive HTML5 Template for SaaS, cryptocurrency, app and tech companies, as well as for digital studios.">
@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- Home Default CSS -->
     <link rel="stylesheet" href="assets/css/home-default.css">
+
+    <link href="views/css/style.css?rel=<?php echo time()?>" rel="stylesheet">
 </head>
 
 <body>
@@ -67,5 +69,6 @@
     <script src="assets/js/theme-plugins.min.js"></script>
     <!-- Theme Custom -->
     <script src="assets/js/script.js"></script>
+    <script src="views/js/contact.js"></script>
 </body>
 </html>

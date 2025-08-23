@@ -25,15 +25,15 @@ class ModeloContacto {
             $mail->setFrom("facturacion-contamatic@contamatic.ec", "Contamatic");
             $mail->addAddress($datos["correo"], $datos["nombre"]);
             $mail->isHTML(true);
-            $mail->Subject = "Correo de confirmación";
+            $mail->Subject = "Correo de confirmaci贸n";
 
             $mail->Body = '
                 <html>
                 <body>
                     <h1>Bienvenido, ' . htmlspecialchars($datos["nombre"]) . '</h1>
-                    <p><b>Código:</b> ' . htmlspecialchars($datos["identificacion"]) . '</p>
+                    <p><b>C贸digo:</b> ' . htmlspecialchars($datos["identificacion"]) . '</p>
                     <p><b>Usuario:</b> ' . htmlspecialchars($datos["nick"]) . '</p>
-                    <p><b>Contraseña:</b> ' . htmlspecialchars($datos["clave"]) . '</p>
+                    <p><b>Contrase帽a:</b> ' . htmlspecialchars($datos["clave"]) . '</p>
                     <p><a href="https://admin-electronico.contamatic.ec/factumatic/">Accede al sistema</a></p>
                 </body>
                 </html>';
@@ -66,7 +66,7 @@ class ModeloContacto {
         if ($stmt->rowCount() > 0) {
             return [
                 "estado" => false,
-                "mensaje" => "El usuario o correo ya está registrado."
+                "mensaje" => "El usuario o correo ya est谩 registrado."
             ];
         }
 
@@ -87,21 +87,24 @@ class ModeloContacto {
                 PASS_USUEMP, FOTO_USUEMP, ROL_USUEMP, EST_USUEMP,
                 PLAN_USUEMP, CANTPLAN_USUEMP, ADMINCRE_USUEMP, TELF_USUEMP,
                 ORIGEN_USUEMP, EST_TERMINOS, COUNT_SMS, EXP_USUEMP,
-                VENDEDOR, AFFILIATED, MANUAL_REG
+                VENDEDOR, AFFILIATED, MANUAL_REG,PASS_REFUSER
             ) VALUES (
                 :id, :nombre, :direccion, :correo, :alias,
                 :clave, :foto, :rol, :estado,
                 :plan, :cantplan, :admin, :telefono,
                 :origen, :terminos, :sms, :experiencia,
-                :vendedor, :afiliado, :manual
+                :vendedor, :afiliado, :manual, :claveBase64
             )");
-
+            $password = md5($datos["PASS_USUEMP"]);
+            $passwordBase64 = base64_encode($datos["PASS_USUEMP"]);
+            
             $stmt->bindParam(":id", $datos["IDE_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":nombre", $datos["NOM_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":direccion", $datos["DIR_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":correo", $datos["EMA_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":alias", $datos["ALI_USUEMP"], PDO::PARAM_STR);
-            $stmt->bindParam(":clave", $datos["PASS_USUEMP"], PDO::PARAM_STR);
+            $stmt->bindParam(":clave", $password, PDO::PARAM_STR);
+            $stmt->bindParam(":claveBase64", $passwordBase64, PDO::PARAM_STR);
             $stmt->bindParam(":foto", $datos["FOTO_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":rol", $datos["ROL_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":estado", $datos["EST_USUEMP"], PDO::PARAM_INT);
@@ -120,11 +123,9 @@ class ModeloContacto {
             if ($stmt->execute()) {
                 return [
                     "estado" => true,
-                    "id" => $datos["IDE_USUEMP"]
+                    "id" => $conexion->lastInsertId()
                 ];
             } else {
-                error_log("[mdlAgregarUsuario] Error al registrar: " . print_r($stmt->errorInfo(), true));
-                error_log("[mdlAgregarUsuario] Datos enviados: " . print_r($datos, true));
                 return [
                     "estado" => false,
                     "mensaje" => "Error al registrar",
@@ -160,16 +161,16 @@ class ModeloContacto {
 
             $stmt = $conectarFactumatic->prepare("
                 INSERT INTO admin (
-                    IDE_USUEMP, NOM_USUEMP, DIR_USUEMP, EMA_USUEMP, PASS_USUEMP,
+                    COD_USUEMP, IDE_USUEMP, NOM_USUEMP, DIR_USUEMP, EMA_USUEMP, PASS_USUEMP,
                     ALI_USUEMP, FOTO_USUEMP, ROL_USUEMP, EST_USUEMP, PLAN_USUEMP,
                     CANTPLAN_USUEMP, ADMINCRE_USUEMP, TELF_USUEMP, COUNT_SMS
                 ) VALUES (
-                    :id, :nombre, :direccion, :correo, :clave,
+                    :codigo, :id, :nombre, :direccion, :correo, :clave,
                     :alias, :foto, :rol, :estado, :plan,
                     :cantplan, :admin, :telefono, :sms
                 )
             ");
-
+            $stmt->bindParam(":codigo", $datos["COD_USUEMP"], PDO::PARAM_INT);
             $stmt->bindParam(":id", $datos["IDE_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":nombre", $datos["NOM_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":direccion", $datos["DIR_USUEMP"], PDO::PARAM_STR);

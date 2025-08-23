@@ -11,7 +11,7 @@ class AjaxContacto {
 
         // Validar Captcha
         $captcha = $_POST['g-recaptcha-response'];
-        $secretKey = "6LdtRqcrAAAAAD9wzTbE9mf65HSqqrZRqNpFmn6X";
+        $secretKey = "6Lex3ZUlAAAAAEfCuqYfchyXEKbYfyjONf7zaT8G"; //
         $respCaptcha = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
         $atributo = json_decode($respCaptcha, true);
 
@@ -20,20 +20,15 @@ class AjaxContacto {
             return;
         }
 
-        // Recibir datos del formulario
-       // Recibir datos del formulario (usar isset para evitar Notice)
-$correo      = isset($_POST["correo"]) ? trim($_POST["correo"]) : '';
-$usuario     = isset($_POST["usuario"]) ? trim($_POST["usuario"]) : '';
-$clave       = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]) : '';
-$experiencia = isset($_POST["experiencia"]) ? trim($_POST["experiencia"]) : null;
-$nombres     = isset($_POST["nombres_apellidos"]) ? trim($_POST["nombres_apellidos"]) : '';
-$cedula      = isset($_POST["cedula"]) ? trim($_POST["cedula"]) : '';
-$direccion   = isset($_POST["direccion"]) ? trim($_POST["direccion"]) : null;
-$telefono    = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
-
-
-
-
+        // Recibir datos del formulario (usar isset para evitar Notice)
+        $correo      = isset($_POST["correo"]) ? trim($_POST["correo"]) : '';
+        $usuario     = isset($_POST["usuario"]) ? trim($_POST["usuario"]) : '';
+        $clave       = isset($_POST["contrasena"]) ? trim($_POST["contrasena"]) : '';
+        $experiencia = isset($_POST["experiencia"]) ? trim($_POST["experiencia"]) : null;
+        $nombres     = isset($_POST["nombres_apellidos"]) ? trim($_POST["nombres_apellidos"]) : '';
+        $cedula      = isset($_POST["cedula"]) ? trim($_POST["cedula"]) : '';
+        $direccion   = isset($_POST["direccion"]) ? trim($_POST["direccion"]) : null;
+        $telefono    = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
 
         // Validar duplicado
         $validar = array(
@@ -45,9 +40,6 @@ $telefono    = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
             echo json_encode($respuesta);
             return;
         }
-
-        // Generar ID único para todas las inserciones
-        $idUsuario = uniqid("WEB_");
 
         // Armar array para insertar en la base principal
         $datos = array(
@@ -85,6 +77,7 @@ $telefono    = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
 
         // Guardar también en la base contamatic_facturacion_electronica
         $datosContamatic = array(
+            "COD_USUEMP"      => $registro["id"],
             "IDE_USUEMP"      => $cedula, // ahora coincide con la base principal
             "NOM_USUEMP"      => $nombres,
             "DIR_USUEMP"      => $direccion,
@@ -104,7 +97,11 @@ $telefono    = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
         $registroContamatic = ModeloContacto::mdlAgregarUsuarioContamatic($datosContamatic);
         if (!$registroContamatic["estado"]) {
             // Si falla en Contamatic, solo lo reportamos
-            error_log("Error al registrar en Contamatic: " . print_r($registroContamatic, true));
+              echo json_encode(array(
+                "estado" => false,
+                "mensaje" => "Error al registrar. Intenta nuevamente."
+            ));
+            return;
         }
 
         // Enviar correo (si está configurado)
@@ -122,49 +119,7 @@ $telefono    = isset($_POST["telefono"]) ? trim($_POST["telefono"]) : null;
             "mensaje" => "Registro exitoso. Tu código único es: " . $usuario
         ), JSON_UNESCAPED_UNICODE);
 
-        // ---------------------
-        // Bloque duplicado original
-        // ---------------------
-        if (!$registroContamatic["estado"]) {
-            // Solo para probar admin: datos de prueba
-            $datosContamatic = array(
-                "IDE_USUEMP"      => $cedula,
-                "NOM_USUEMP"      => $nombres,
-                "DIR_USUEMP"      => $direccion,
-                "EMA_USUEMP"      => $correo,
-                "PASS_USUEMP"     => $clave,
-                "ALI_USUEMP"      => $usuario,
-                "FOTO_USUEMP"     => "",
-                "ROL_USUEMP"      => "Vendedor",
-                "EST_USUEMP"      => 0,
-                "PLAN_USUEMP"     => "normal",
-                "CANTPLAN_USUEMP" => null,
-                "ADMINCRE_USUEMP" => 1,
-                "TELF_USUEMP"     => $telefono,
-                "COUNT_SMS"       => 0
-            );
 
-            $registroContamatic = ModeloContacto::mdlAgregarUsuarioContamatic($datosContamatic);
-            if (!$registroContamatic["estado"]) {
-                error_log("Error al registrar en Contamatic: " . print_r($registroContamatic, true));
-                error_log("Error al registrar en Contamatic: " . $registroContamatic["error"]);
-            }
-
-            // Enviar correo (si está configurado)
-            $correoData = array(
-                "nombre"         => $nombres,
-                "identificacion" => $idUsuario,
-                "correo"         => $correo,
-                "nick"           => $usuario,
-                "clave"          => $clave
-            );
-            ModeloContacto::enviarCorreoElectronico($correoData);
-
-            echo json_encode(array(
-                "estado" => true,
-                "mensaje" => "Registro exitoso. Tu código único es: " . $usuario
-            ), JSON_UNESCAPED_UNICODE);
-        }
     }
 }
 
