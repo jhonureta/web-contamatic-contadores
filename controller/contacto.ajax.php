@@ -2,16 +2,21 @@
 
 require_once "../model/contacto_modelo.php"; // corregido de "model" a "modelo"
 require_once "./envioMensaje.controlador.php"; // corregido de "controlador" a "controlador.php"
+require_once $_SERVER['DOCUMENT_ROOT'] . '/load_env.php';
 
-class AjaxContacto {
+class AjaxContacto
+{
 
-    public function ajaxRegistrarInformacionUsuario() {
+    public function ajaxRegistrarInformacionUsuario()
+    {
+        cargarEnv($_SERVER['DOCUMENT_ROOT'] . '/.env');
+        // Luego puedes usar las variables de entorno
+        $secretKey = getenv('RECAPTCHA_SECRET_KEY');
 
         $ip = $_SERVER['REMOTE_ADDR'];
 
         // Validar Captcha
         $captcha = $_POST['g-recaptcha-response'];
-        $secretKey = "6Lex3ZUlAAAAAEfCuqYfchyXEKbYfyjONf7zaT8G"; //
         $respCaptcha = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretKey&response=$captcha&remoteip=$ip");
         $atributo = json_decode($respCaptcha, true);
 
@@ -97,7 +102,7 @@ class AjaxContacto {
         $registroContamatic = ModeloContacto::mdlAgregarUsuarioContamatic($datosContamatic);
         if (!$registroContamatic["estado"]) {
             // Si falla en Contamatic, solo lo reportamos
-              echo json_encode(array(
+            echo json_encode(array(
                 "estado" => false,
                 "mensaje" => "Error al registrar. Intenta nuevamente."
             ));
@@ -118,15 +123,140 @@ class AjaxContacto {
             "estado" => true,
             "mensaje" => "Registro exitoso. Tu código único es: " . $usuario
         ), JSON_UNESCAPED_UNICODE);
+    }
+    public function ajaxRegistroEmpresarioSis()
+    {
+        try {
+
+            $nombreapellido = trim($_POST["nombre"]);
+            $telefono = trim($_POST["telefono"]);
+            $correo = trim($_POST["correo"]);
+            $ciudad = trim($_POST["ciudad"]);
+            $cargo = trim($_POST["cargo"]);
+            $tipo = trim($_POST["tipo"]);
+
+            if (empty($nombreapellido) || empty($telefono) || empty($ciudad) || empty($cargo)) {
+                throw new Exception("Por favor, complete todos los campos.");
+            }
+
+            $telefonoRegex = '/^\d{10,13}$/';
+            if (!preg_match($telefonoRegex, $telefono)) {
+                throw new Exception("Por favor ingrese un número de teléfono válido.");
+            }
 
 
+            $hora = new DateTime("now", new DateTimeZone('America/Guayaquil'));
+            $fechahora = $hora->format('Y-m-d H:i:s');
+            $datos =  array(
+                "nombre" => $nombreapellido,
+                "telefono" => $telefono,
+                "correo" => $correo,
+                "ciudad" => $ciudad,
+                "fecha" => $fechahora,
+                "cargo" => $cargo,
+                "estado" => "REGISTRADO",
+                "tipo" => $tipo,
+                "jsonCuest" => null,
+            );
+
+            $validacion = ModeloContacto::validarEmpresarioRepetido($datos);
+            if ($validacion["status"] == "ERROR") {
+                throw new Exception($validacion["message"]);
+            }
+
+            $respuesta = ModeloContacto::mdlGuardarEmpresarioAdminElectronico($datos);
+            if ($respuesta["status"] == "ERROR") {
+                throw new Exception($respuesta["message"]);
+            }
+
+            header("Content-Type: application/json");
+            echo json_encode(array(
+                "status" => $respuesta["status"],
+                "message" => $respuesta["message"],
+            ));
+        } catch (Exception $e) {
+            $respuesta = array("status" => "ERROR", "message" => $e->getMessage());
+            header("Content-Type: application/json");
+            echo json_encode($respuesta);
+        }
+    }
+
+    public function ajaxRegistroEmpresario()
+    {
+        try {
+
+            $nombreapellido = trim($_POST["nombre"]);
+            $telefono = trim($_POST["telefono"]);
+            $cargo = trim($_POST["cargo"]);
+            $jsonCuest = $_POST["jsonCuest"];
+            $correo = trim($_POST["correo"]);
+            $ciudad = trim($_POST["ciudad"]);
+            $tipo = trim($_POST["tipo"]);
+
+            if (empty($nombreapellido) || empty($telefono) || empty($cargo) || empty($ciudad)) {
+                throw new Exception("Por favor, complete todos los campos.");
+            }
+
+            $telefonoRegex = '/^\d{10,13}$/'; // Se asume que el teléfono es de 10 dígitos
+            if (!preg_match($telefonoRegex, $telefono)) {
+                throw new Exception("Por favor ingrese un número de teléfono válido.");
+            }
+
+            $hora = new DateTime("now", new DateTimeZone('America/Guayaquil'));
+            $fechahora = $hora->format('Y-m-d H:i:s');
+            $datos =  array(
+                "nombre" => $nombreapellido,
+                "telefono" => $telefono,
+                "cargo" => $cargo,
+                "fecha" => $fechahora,
+                "estado" => "REGISTRADO",
+                "tipo" => $tipo,
+                "correo" => $correo,
+                "ciudad" => $ciudad,
+                "jsonCuest" => $jsonCuest,
+            );
+
+            $validacion = ModeloContacto::validarEmpresarioRepetido($datos);
+            if ($validacion["status"] == "ERROR") {
+                throw new Exception($validacion["message"]);
+            }
+
+            $respuesta = ModeloContacto::mdlGuardarEmpresarioAdminElectronico($datos);
+            if ($respuesta["status"] == "ERROR") {
+                throw new Exception($respuesta["message"]);
+            }
+
+            header("Content-Type: application/json");
+
+            echo json_encode(array(
+                "status" => $respuesta["status"],
+                "message" => $respuesta["message"],
+            ));
+        } catch (Exception $e) {
+            $respuesta = array("status" => "ERROR", "message" => $e->getMessage());
+            header("Content-Type: application/json");
+            echo json_encode($respuesta);
+        }
     }
 }
 
 /* -------------------------------------------------------------------------- */
 /*                            DETECTAR POST DE REGISTRO                       */
 /* -------------------------------------------------------------------------- */
-if(isset($_POST["correo"])){
+if (isset($_POST["generarRegistro"])) {
     $ajax = new AjaxContacto();
     $ajax->ajaxRegistrarInformacionUsuario();
+}
+
+if (isset($_POST["generarRegistroEmpresario"])) {
+    $ajax = new AjaxContacto();
+    $ajax->ajaxRegistroEmpresario();
+    return;
+}
+
+if (isset($_POST["generarRegistroEmpresarioSis"])) {
+
+    $ajax = new AjaxContacto();
+    $ajax->ajaxRegistroEmpresarioSis();
+    return;
 }

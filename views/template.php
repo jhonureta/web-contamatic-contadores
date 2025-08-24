@@ -23,7 +23,7 @@
     <!-- Home Default CSS -->
     <link rel="stylesheet" href="assets/css/home-default.css">
 
-    <link href="views/css/style.css?rel=<?php echo time()?>" rel="stylesheet">
+    <link href="views/css/style.css" rel="stylesheet">
 </head>
 
 <body>

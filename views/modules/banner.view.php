@@ -1,3 +1,9 @@
+<?php
+require_once $_SERVER['DOCUMENT_ROOT'] . '/load_env.php';
+cargarEnv($_SERVER['DOCUMENT_ROOT'] . '/.env');
+// Luego puedes usar las variables de entorno
+$publicKey = getenv('RECAPTCHA_SITE_KEY');
+?>
 <div class="home-default-banner">
   <div class="container pos-rel">
     <div class="banner-abstract-shape"></div>
@@ -235,7 +241,7 @@
 
                 <!-- Solo se muestra en el tab 'Crear Cuenta' -->
                 <div class="mb-3">
-                  <div class="g-recaptcha" data-sitekey="6Lex3ZUlAAAAAEOKmJwG6BQv651yL2unFSKiPQ6R"></div> <!-- Asegúrate de reemplazar con tu clave -->
+                  <div class="g-recaptcha" data-sitekey="<?= $publicKey ?>"></div> <!-- Asegúrate de reemplazar con tu clave -->
                 </div>
                 <script>
                   document.getElementById("registroForm").addEventListener("submit", function(e) {
@@ -250,7 +256,7 @@
                 <div id="mensajeRegistro" style="margin-top:15px;"></div>
                 <!-- Botón de Enviar solo en 'Crear Cuenta' -->
                 <div class="d-grid">
-                  <button type="submit" class="btn btn-outline-primary btn-sm">
+                  <button type="submit" class="btn btn-outline-primary btn-sm" id="btnRegistroContador">
                     <span class="outer-wrap"><span data-text="Registrarse">Registrarse</span></span>
                   </button>
                 </div>
@@ -267,13 +273,15 @@
 
                     // Combinar datos de ambos formularios
                     var formDatos = new FormData(document.getElementById("datospersonales")); // primer formulario
+
                     var formCuenta = new FormData(this); // segundo formulario
 
                     // Agregar los campos del segundo formulario al primero
                     for (var [key, value] of formCuenta.entries()) {
                       formDatos.append(key, value);
                     }
-
+                    formDatos.append('generarRegistro', true);
+                    document.getElementById('btnRegistroContador').disabled = true;
                     // Enviar al servidor
                     fetch("controller/contacto.ajax.php", {
                         method: "POST",
@@ -288,7 +296,9 @@
                           document.getElementById("datospersonales").reset();
                           document.getElementById("registroForm").reset();
                           grecaptcha.reset();
+                          document.getElementById('btnRegistroContador').disabled = false;
                         } else {
+                          document.getElementById('btnRegistroContador').disabled = false;
                           mensajeDiv.innerHTML = `<div class="alert alert-danger">${data.mensaje}</div>`;
                         }
                       })
@@ -374,7 +384,7 @@
           <!-- Campo para Teléfono -->
           <div class="mb-3">
             <label class="form-label text-primary fw-bold">Teléfono</label>
-            <input type="tel" class="form-control" id="telefonoEmpresarioSis" placeholder="Ingrese su número de teléfono" pattern="[0-9]{10}" title="El teléfono debe contener 10 dígitos numéricos" required>
+            <input type="number" class="form-control" id="telefonoEmpresarioSis" placeholder="Ingrese su número de teléfono" pattern="[0-9]{10}" title="El teléfono debe contener 10 dígitos numéricos" required>
           </div>
 
           <!-- Botón para completar el cuestionario -->
@@ -395,17 +405,17 @@
   </div>
 </div>
 
-<div class="modal" id="modalCuestionario">
+<div class="modal" id="modalCuestionario" tabindex="-1" aria-labelledby="modal" aria-hidden="true"
+  data-bs-backdrop="static" data-bs-keyboard="false" data-bs-scroll="false">
   <div class="flash-container" id="flash-container-2">
     <!-- Flash messages will be inserted here -->
   </div>
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content" style="border-radius: 10px; max-height: 90vh;">
-      <div class="card card_registro p-3 p-md-4">
-        <div class="d-flex justify-content-start mb-3">
-          <button type="button" class="btn-close me-3" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-          <h5 class="fw-bold">Solicita tu Solución Contable</h5>
-        </div>
+  <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
         <div class="row mx-2 mx-md-3 mt-4 mb-3">
           <div class="col-12 py-2 mb-2">
             <div class="form-group">
@@ -469,8 +479,8 @@
           <div class="col-12 py-2 mb-2">
             <div class="form-group">
               <label for="tiempo" class="form-label fw-semibold">7. ¿Está buscando a un contador a tiempo parcial o a tiempo completo?</label>
-              <select class="form-control" id="tiempoCuestionario" required>
-                <option value="" disabled selected>Seleccione una opción</option>
+              <select class="form-select" id="tiempoCuestionario">
+                <option value="">Seleccione una opción</option>
                 <option value="parcial">Tiempo parcial</option>
                 <option value="completo">Tiempo completo</option>
               </select>

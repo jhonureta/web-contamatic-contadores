@@ -7,12 +7,46 @@ require_once "conexion.php";
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-class ModeloContacto {
+class ModeloContacto
+{
+
+    static public function insertar($objetoInsercion, $operacion, $tabla = "")
+    {
+
+        if ($objetoInsercion->execute()) {
+
+            $registrosIngresados = $objetoInsercion->rowCount();
+            if ($registrosIngresados > 0) {
+                return array(
+                    "estado" => true,
+                    "registrosIngresados" => $registrosIngresados,
+                    "test" => $operacion . " ejecutada exitosamente",
+                    "mensaje" => "datos" . $tabla . " ingresados correctamente"
+                );
+            } else {
+                return array(
+                    "estado" => false,
+                    "registrosIngresados" => $registrosIngresados,
+                    "test" => $operacion . " ejecutada exitosamente pero ningun registro insertado",
+                    "mensaje" => "Error al ingresar" . $tabla,
+                    "error" => $objetoInsercion->errorInfo()
+                );
+            }
+        } else {
+            return array(
+                "estado" => false,
+                "mensaje" => "error no se ha podido ingresar datos | error 500",
+                "test" => "funcion " . $operacion . " no ejecutada",
+                "error" => $objetoInsercion->errorInfo()
+            );
+        }
+    }
 
     /* ==============================================
     ENVIAR CORREO
     ============================================== */
-    static public function enviarCorreoElectronico($datos){
+    static public function enviarCorreoElectronico($datos)
+    {
         try {
             $mail = new PHPMailer(true);
             $mail->isSMTP();
@@ -44,7 +78,6 @@ class ModeloContacto {
                 "estado" => true,
                 "mensaje" => "Correo enviado correctamente a " . $datos["correo"]
             ];
-
         } catch (Exception $e) {
             return [
                 "estado" => false,
@@ -57,7 +90,8 @@ class ModeloContacto {
     /* ==============================================
     VALIDAR SI USUARIO YA EXISTE
     ============================================== */
-    static public function validarUsuarioRepetido($datos){
+    static public function validarUsuarioRepetido($datos)
+    {
         $stmt = Conexion::conectar()->prepare("SELECT * FROM usuarios WHERE EMA_USUEMP = :correo OR ALI_USUEMP = :alias");
         $stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
         $stmt->bindParam(":alias", $datos["alias"], PDO::PARAM_STR);
@@ -79,7 +113,8 @@ class ModeloContacto {
     /* ==============================================
     INSERTAR USUARIO NUEVO EN BASE PRINCIPAL
     ============================================== */
-    static public function mdlAgregarUsuario($datos){
+    static public function mdlAgregarUsuario($datos)
+    {
         try {
             $conexion = Conexion::conectar();
             $stmt = $conexion->prepare("INSERT INTO usuarios (
@@ -97,7 +132,7 @@ class ModeloContacto {
             )");
             $password = md5($datos["PASS_USUEMP"]);
             $passwordBase64 = base64_encode($datos["PASS_USUEMP"]);
-            
+
             $stmt->bindParam(":id", $datos["IDE_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":nombre", $datos["NOM_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":direccion", $datos["DIR_USUEMP"], PDO::PARAM_STR);
@@ -133,7 +168,6 @@ class ModeloContacto {
                     "datos" => $datos
                 ];
             }
-
         } catch (Exception $e) {
             return [
                 "estado" => false,
@@ -146,16 +180,17 @@ class ModeloContacto {
     /* ==============================================
     INSERTAR USUARIO EN BASE CONTAMATIC_FACTURACION_ELECTRONICA
     ============================================== */
-    static public function mdlAgregarUsuarioContamatic($datos){
+    static public function mdlAgregarUsuarioContamatic($datos)
+    {
         try {
             $conectarFactumatic = Conexion::conectarFactumatic();
 
             $datos["FOTO_USUEMP"] = !empty($datos["FOTO_USUEMP"]) ? $datos["FOTO_USUEMP"] : "default.jpg";
             $datos["ROL_USUEMP"]  = !empty($datos["ROL_USUEMP"]) ? $datos["ROL_USUEMP"] : "admin";
             $datos["EST_USUEMP"]  = isset($datos["EST_USUEMP"]) ? (int)$datos["EST_USUEMP"] : 1;
-            $datos["PLAN_USUEMP"] = !empty($datos["PLAN_USUEMP"]) ? substr($datos["PLAN_USUEMP"],0,20) : "normal";
+            $datos["PLAN_USUEMP"] = !empty($datos["PLAN_USUEMP"]) ? substr($datos["PLAN_USUEMP"], 0, 20) : "normal";
             $datos["COUNT_SMS"]   = isset($datos["COUNT_SMS"]) ? (int)$datos["COUNT_SMS"] : 0;
-            $datos["PASS_USUEMP"] = substr($datos["PASS_USUEMP"],0,50);
+            $datos["PASS_USUEMP"] = substr($datos["PASS_USUEMP"], 0, 50);
             $datos["CANTPLAN_USUEMP"] = isset($datos["CANTPLAN_USUEMP"]) ? (int)$datos["CANTPLAN_USUEMP"] : 0;
             $datos["TELF_USUEMP"] = !empty($datos["TELF_USUEMP"]) ? $datos["TELF_USUEMP"] : null;
 
@@ -186,7 +221,7 @@ class ModeloContacto {
             $stmt->bindParam(":telefono", $datos["TELF_USUEMP"], PDO::PARAM_STR);
             $stmt->bindParam(":sms", $datos["COUNT_SMS"], PDO::PARAM_INT);
 
-            if($stmt->execute()){
+            if ($stmt->execute()) {
                 return ["estado" => true];
             } else {
                 return [
@@ -195,8 +230,7 @@ class ModeloContacto {
                     "datos"  => $datos
                 ];
             }
-
-        } catch (Exception $e){
+        } catch (Exception $e) {
             return [
                 "estado" => false,
                 "error"  => $e->getMessage(),
@@ -205,4 +239,94 @@ class ModeloContacto {
         }
     }
 
+    static public function mdlGuardarEmpresarioAdminElectronico($datos)
+    {
+
+        $stmConTransaccion = Conexion::conectar();
+        $stmConTransaccion->beginTransaction();
+
+        try {
+            $stmt = $stmConTransaccion->prepare(
+                "INSERT INTO registro_empresario(
+		        NOMB_REGEMP, 
+		        TELF_REGEMP, 
+		        CARGO_REGEMP, 
+		        FEC_REG_REGEMP,
+		        CORREO_REGEMP,
+		        CIUDAD_REGEMP,
+		        TIPO_SOL_REGEMP,
+		        ESTADO_REGEMP,
+		        CUEST_REGEMP
+		    )
+		    VALUES (
+		        :nombre, 
+		        :telefono, 
+		        :cargo, 
+		        :fecha,
+		        :correo,
+		        :ciudad,
+		        :tipo,
+		        :estado,
+		        :json
+		    );"
+            );
+
+            $stmt->bindParam(":nombre", $datos["nombre"], PDO::PARAM_STR);
+            $stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
+            $stmt->bindParam(":cargo", $datos["cargo"], PDO::PARAM_STR);
+            $stmt->bindParam(":fecha", $datos["fecha"], PDO::PARAM_STR);
+            $stmt->bindParam(":correo", $datos["correo"], PDO::PARAM_STR);
+            $stmt->bindParam(":ciudad", $datos["ciudad"], PDO::PARAM_STR);
+            $stmt->bindParam(":tipo", $datos["tipo"], PDO::PARAM_STR);
+            $stmt->bindParam(":estado", $datos["estado"], PDO::PARAM_STR);
+            $stmt->bindParam(":json", $datos["jsonCuest"], PDO::PARAM_STR);
+
+            $respuesta = ModeloContacto::insertar($stmt, "guardarEmpresarioAdminElectronico", "Registrados insertados en correctamente en registro_empresario");
+
+            if (!$respuesta["estado"]) {
+                $stmConTransaccion->rollback();
+                return array(
+                    "status" => "ERROR",
+                    "message" => "Ocurrio un error al ingresar la informacion",
+                );
+            }
+
+            $stmConTransaccion->commit();
+            return array(
+                "status" => "OK",
+                "message" => "Datos registrados correctamente",
+            );
+        } catch (Error $e) {
+            $stmConTransaccion->rollback();
+            return array(
+                "status" => "ERROR",
+                "message" => $e->getMessage(),
+            );
+        }
+    }
+
+    static public function validarEmpresarioRepetido($datos)
+    {
+        $stmt = Conexion::conectar()->prepare("SELECT COD_REGEMP FROM registro_empresario WHERE TELF_REGEMP = :telefono");
+        $stmt->bindParam(":telefono", $datos["telefono"], PDO::PARAM_STR);
+        if (!$stmt->execute()) {
+            return array(
+                "status" => "ERROR",
+                "message" => "Ocurrio un error al ingresar la informacion",
+            );
+        }
+
+        $respuesta = $stmt->fetchAll();
+        if (count($respuesta) > 0) {
+            return array(
+                "status" => "ERROR",
+                "message" => "El número de telefono ya se encuentra registrado",
+            );
+        }
+
+        return array(
+            "status" => "OK",
+            "message" => "",
+        );
+    }
 }

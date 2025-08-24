@@ -8,7 +8,7 @@ class Conexion{
 
     static public function conectar(){
         
-		$link = new PDO("mysql:host=192.168.1.35:3306:3306;dbname=contamatic_admin_electronico",
+		$link = new PDO("mysql:host=host.docker.internal:3306;dbname=contamatic_admin_electronico",
         "root",
         "");
 
@@ -24,7 +24,7 @@ class Conexion{
 
     static public function conectarFactumatic(){
         
-        $link = new PDO("mysql:host=192.168.1.35:3306:3306;dbname=contamatic_facturacion_electronica",
+        $link = new PDO("mysql:host=host.docker.internal:3306;dbname=contamatic_facturacion_electronica",
         "root",
         "");
 
